@@ -78,6 +78,7 @@ if id=='admin' and pwd=='test' :
 else:
     print('fail')
 '''
+'''
 #3. 로그인 개선
 id =input("ID:")
 pw =input("PW:")
@@ -88,3 +89,22 @@ if id=="admin": #id가admin이라면
         print("WrongPW")
 else: #id가admin이아닌경우
     print("WrongID")
+'''
+'''
+# if True인 경우 아무것도 하지 않는 문장
+card = True
+if card:
+    pass
+else:
+    print('걸어감')
+'''
+card = True
+if card: pass
+else: print('걸어감')
+'''
+#조건부 표현식
+score=int(input('점수:'))
+# 변수 = 조건문이 참인결과 if 조건문 else 조건문이 거짓인결과
+message = "success" if score >=60 else "failure"
+print(message)
+'''
