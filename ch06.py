@@ -98,9 +98,11 @@ if card:
 else:
     print('걸어감')
 '''
+'''
 card = True
 if card: pass
 else: print('걸어감')
+'''
 '''
 #조건부 표현식
 score=int(input('점수:'))
@@ -108,3 +110,13 @@ score=int(input('점수:'))
 message = "success" if score >=60 else "failure"
 print(message)
 '''
+#'23 12 45'
+temp = input().split()
+#temp ='23 12 45'.split()
+print(temp)
+
+a,b,c = map(int,temp) # ['23','12','45']=>[int('23'),int('12'),int('45')]=> [23,12,45]
+print(a,type(a),b, type(b),c,type(c))
+
+for x in temp:
+    print(int(x))
