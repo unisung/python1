@@ -92,11 +92,79 @@
 
 # append, extend, insert
 # 뒤에 이어붙이기
+# a=[1,2,3,4]
+# b=["WEB","OA","Multi"]
+# a.append(5)
+# a.append("python")
+# a.append([6,7])
+# a.append(b)
+# print(a)
+
+#extend - 리스트 끼리 연산
 a=[1,2,3,4]
 b=["WEB","OA","Multi"]
-a.append(5)
-a.append("python")
-a.append([6,7])
-a.append(b)
+a.extend(b) #a를 확장
 print(a)
+
+#a.extend(5) #list와 일반객체 연산불가
+
+#insert(위치,값)
+a=[1,2,3,4]
+a.insert(2,5)
+print(a)
+
+# "Excel"
+b=["WEB","OA","Multi","RUBY"]
+b.insert(2, "Excel")
+print(b)
+# 리스트내 객체의 index번호 index(객체) 메소드
+print(b.insert(b.index("OA")+1,"Excel"))
+print(b)
+
+#삭제: del, pop, remove
+b=["WEB","OA","Multi","RUBY"]
+del b[1]  # 버전2~
+print(b)
+del(b[1]) #버전 3~
+print(b)
+
+#pop()
+a=["WEB","OA","Multi","RUBY"]
+a.pop(2) # pop(index) 해당 index객체 삭제
+a.pop()  # pop() 제일 마지막 객체 제거
+a.pop()
+k=a.pop() # 해당객체를 리턴해주고 삭제
+print(k)
+
+# remove()
+a=["WEB","OA","Multi","RUBY"]
+a.remove("OA") #해당객체를 매개값으로 받음
+print(a)
+#a.remove("web") #ValueError: list.remove(x): x not in list
+
+# count() #리스트내의 해당객체의 갯수출력
+a=["WEB","OA","Multi","RUBY","OA"]
+print(a.count("OA"))
+
+#
+a=["WEB","OA","Multi","RUBY","OA"]
+print(a.count("python"))
+if a.count("python"): #파이썬에서 숫자0은 False, 0아닌값 True
+    a.remove("python")
+    print(a)
+else:
+    print("삭제할 값이 없습니다.")
+
+a=["WEB","OA","Multi","RUBY","OA"]
+print("OA" in a) # in은 객체 내에 해당값이 있는지 여부판단True/False
+print("python" in a)
+
+a=["WEB","OA","Multi","RUBY","OA"]
+if "python" in a:
+    a.remove("python")
+    print(a)
+else:
+    print("없음")
+
+
 
