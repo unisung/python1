@@ -166,5 +166,48 @@ if "python" in a:
 else:
     print("없음")
 
+#정렬 sort()메소드
+a=[7,9,5,1,4,8,3,2,6]
+a.sort() #오름차순 정렬
+print(a)
+b=a.sort() #sort()결과는 None 값을 리턴하지않는 void타입
+print(b)
+
+k=a.pop()
+print(k)
+#reverse
+a=[7,9,5,1,4,8,3,2,6]
+a.reverse()
+print(a)
+
+# sort()후 reverse()
+a.sort()
+a.reverse()
+print(a)
+
+#sorted()
+a=[7,9,5,1,4,8,3,2,6]
+b=sorted(a)
+print(a)
+print(b)
+#내림차순 정렬 sorted(리스트,reverse=True)
+b=sorted(a,reverse=True)
+print(b)
+
+# len() 길이 함수
+prog=["C","PYTHON","JAVA","GO"]
+print(len(prog))
+s=len(prog) #
+print(prog[s-1]) # 리스트길이(4) - 1 = 3(index번호)
+print(prog[-1])
+
+# 리스트 내 반복문
+data=["cpu","ram","vga","ssd","dvd"]
+for a in range(len(data)): # range(5) -0~4
+    print(data[a], end=" ")
+
+
+
+
 
 
