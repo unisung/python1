@@ -206,6 +206,56 @@ data=["cpu","ram","vga","ssd","dvd"]
 for a in range(len(data)): # range(5) -0~4
     print(data[a], end=" ")
 
+a=["WEB","OA","Multi","RUBY"]
+b="\n".join(a)
+print("\n".join(a))
+
+data=[1,2,3,4,5]
+print("-".join(map(str,data))) #[str(1),str(2),str(3),..,str(5)]
+
+data=[1,2,3,4,5]
+print(data[0],type(data[0]))
+a1,a2,a3,a4,a5 = map(str,data)
+print(a1,type(a1))
+
+#리스트 내포[]
+import random
+data=[]
+for a in range(10):
+    data.append(random.randint(10,99))
+print(data)
+
+import random
+data1=[random.randint(10,99) for a in range(10)]
+print(data1)
+
+data=[1,2,3,4,5]
+data2=[]
+for a in data:
+    data2.append(a*a)
+print(data2)
+
+data2=[a*a for a in data]
+print(data2)
+
+# 이차원 리스트
+a=[[1,2,3],["a","b"],(10,20,30)]
+print(a[0],a[0][1])
+print(a[1][1])
+print(a[2][1])
+
+data=[[10101, "김창준","rober@abc.com",34],
+    [10305, "심재호","jhsi@abc.com",23],
+    [10515, "김은희","ehkim@abc.com",15],
+    [10823, "박지원","jhpark@abc.com",25],
+      ]
+#이름 이메일 출력
+for a in range(len(data)): # 4
+    print(data[a][1], data[a][2])
+
+for a in data: #
+    print(a[1], a[2])
+
 
 
 
