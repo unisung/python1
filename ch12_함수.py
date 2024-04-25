@@ -145,7 +145,7 @@ def data_sum(*n):
 
 print(data_sum(1))
 print(data_sum(1,2))
-print(data_sum(1),2,3,4,5,6,7,8,9,10)
+print(data_sum(1,2,3,4,5,6,7,8,9,10))
 
 # 키워드 매개변수, kwargs
 def print_kwargs(**kwargs):
@@ -165,8 +165,49 @@ say_nick('아이돌')
 say_nick('바보')
 
 
+# 매개변수에 초기값 미리 설정
+def say_myself(name, age, man=True): #변수값을 default로 초기화
+    print("나의 이름은 %s"%name)
+    print("나이는 %d살입니다"%age)
+    if man:
+        print("남자입니다.")
+    else:
+        print("여자입니다.")
 
+say_myself('홍길동',18,True)
+say_myself('임꺽정',18)
+say_myself("유관순",20,False)
 
+#매개변수중 default로 초기화 된 매개변수는 가장 나중에 위치함
+'''
+def say_myself2(name, man=True, age ): #변수값을 default로 초기화
+    print("나의 이름은 %s"%name)
+    print("나이는 %d살입니다"%age)
+    if man:
+        print("남자입니다.")
+    else:
+        print("여자입니다.")
+'''
+#함수 안에서 선언한 변수의 효력범위(scope)
+a=1
+def vartest(a): # 변수내/변수의 매개변수부에서 선언된 변수는 함수내에서만 사용
+    a = a +1
 
+vartest(a)
+print(a)
+## return
+a=1
+def vartest2(a): # 변수내/변수의 매개변수부에서 선언된 변수는 함수내에서만 사용
+    a = a +1
+    return a
 
+a=vartest2(a)
+print(a)
 
+a=1
+def vartest3(): # 변수내/변수의 매개변수부에서 선언된 변수는 함수내에서만 사용
+    global a
+    a = a +1
+
+vartest3()
+print(a)
