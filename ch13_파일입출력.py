@@ -74,5 +74,24 @@ with open('c:\\Temp\\test4.txt','r') as f:
         if not t: break
         print(t, end='')
 
-#문자열,숫자값 입/출력
-#객체 입출력
+#문자열,숫자값 입/출력 -> 객체 입출력
+import pickle
+f=open("c:\\Temp\\test5.txt",'wb') #w-write,b-binary
+data={1:'python',2:'you need'}
+pickle.dump(data,f)
+f.close()
+print('저장완료')
+
+f=open("c:\\Temp\\test5.txt",'rb')
+data=pickle.load(f)
+print(data)
+# 퀴즈
+# ['A','B','AB','O','AB','O','B','AB']
+# {'A':1, 'B':2, 'AB':3, 'O':2}
+# c:\temp\blood.txt 저장 후 읽어서 출력
+
+
+
+
+
+
