@@ -211,3 +211,15 @@ def vartest3(): # 변수내/변수의 매개변수부에서 선언된 변수는 
 
 vartest3()
 print(a)
+
+
+#재귀함수
+def factorial(n):
+    if n==1:
+        return 1
+    return n*factorial(n-1)
+
+print(factorial(5))
+
+import math
+print(math.factorial(5))
