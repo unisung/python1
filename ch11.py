@@ -57,6 +57,76 @@ for k, v in fruits.items():
     if v=="banana":
         print(k,":",v)
 
+#value존재확인
+print("banana" in fruits.values())
+
+# 딕셔너리 합치기 update()
+# 합칠때 키가 중복이면 마지막 value로 업데이트됨.
+f1={'a':'apple', 'b':'banana'}
+f2={'b':'blueberry','c':'coconut'}
+f1.update(f2)
+print(f1)
+
+# 퀴즈- 리스트를 아래와 같이 dict_bleed{}로 변환하는 코드작성
+blist =['A','O','B','AB','B','A','AB','AB','A','A']
+dict_bleed={}
+# {'A':4, 'B':2, 'AB':3,'O':1}
+for x in blist:
+    dict_bleed[x] = blist.count(x)
+print(dict_bleed)
 
 
 
+data={"d":8,"c":5,"a":9,"b":2}
+d1=sorted(data)
+d2=sorted(data.keys())# []
+print(d1,d2)
+#딕셔너리 출력
+data={"d":8,"c":5,"a":9,"b":2}
+d3=sorted(data.keys(),reverse=True)#[]
+for k in d3:
+    print(k,data[k])
+
+data={"d":8,"c":5,"a":9,"b":2}
+d2=sorted(data.values())
+d3=sorted(data.values(),reverse=True)
+print(d2,d3)
+
+# items() 정렬
+data={"d":8,"c":5,"a":9,"b":2}
+d1=sorted(data.items())
+d2=sorted(data.items(),reverse=True)
+print(d1,d2)
+
+#
+data={'d':8, 'c':5, 'a':9, 'b':2}
+k1=sorted(data.items(),key=lambda x:x[0])
+k2=sorted(data.items(),
+        key=lambda x:x[0],reverse=True)
+print(k1,k2)
+
+v1=sorted(data.items(),key=lambda x:x[1])
+v2=sorted(data.items(),
+        key=lambda x:x[1],reverse=True)
+print(v1,v2)
+
+
+#최대 최소
+data={'d':8, 'c':5, 'a':9, 'b':2}
+sdata=sorted(data.items(), key=lambda x:x[1],reverse=True)
+for k, v in sdata:
+    print(k,v)
+
+# lamba 예약어
+# 함수_이름 = lambda 매개변수, 매개변수2,...: 표현식부분
+# def 함수_이름(매개변수1,매개변수2,..):
+#    return 값
+def add(a,b):
+    return a+b
+
+result = add(4,3)
+print(result)
+
+add = lambda a,b:a+b
+result = add(3,4)
+print(result)
