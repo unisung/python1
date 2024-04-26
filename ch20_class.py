@@ -59,6 +59,48 @@ c=MoreFourCal(4,3)
 print(c.pow())
 
 
+#메소드 오버라이딩, 오버로딩
+#상속받은 메소드의 내용부분을 재정의
+class SafeFourCal(FourCal):
+    def div(self,first,second):
+        if self.second ==0:
+            return 0
+        else:
+            return self.first / self.second
+    def div(self):
+        if self.second ==0:
+            return 0
+        else:
+            return self.first / self.second
+
+    def _mul_(self):
+        return self.first * self.second
+
+#SafeFourcal={'div':function(), 'div':function(f,s)}
+
+c=SafeFourCal(10,0)
+print(c.div())
+c=SafeFourCal(10,3)
+print(c.div())
+print(c.div())
+print('--------')
+print(c._mul_())
+
+#추상클래스
+from abc import *
+class AbsClass(metaclass=ABCMeta):
+    @abstractmethod
+    def myab(self):
+        pass
+
+class BBB(AbsClass):
+    def myab(self): # 추상메소드 재정의
+        pass
+#k=AbsClass()
+k=BBB()
+
+
+
 
 
 
