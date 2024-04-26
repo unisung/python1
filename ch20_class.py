@@ -12,6 +12,12 @@ print(type(a))
 #def setdata(first,second):
 
 class FourCal:
+    #생성자 __init__ # 생성된 객체의 변수 초기화
+    def __init__(self,first,second):
+        self.first = first
+        self.second = second
+    #def __init__(self):
+    #    pass
     def setdata(self,first,second):
         self.first=first
         self.second=second
@@ -26,10 +32,36 @@ class FourCal:
     def div(self):
         return self.first / self.second
 
-a=FourCal()
+#a=FourCal()
+a=FourCal(10,20) #
 a.setdata(10,20)
 print(a.first, a.second)
 print(a.add(), a.mul(),a.sub(),a.div())
+
+
+#클래스 상속
+#class 자식클래스(부모클래스):
+class MoreFourCal(FourCal):
+    pass
+
+b=MoreFourCal(4,2)
+print(b.add())
+print(b.mul())
+print(b.sub())
+print(b.div())
+
+#상속후 추가
+class MoreFourCal(FourCal):
+    def pow(self):
+        return self.first**self.second
+
+c=MoreFourCal(4,3)
+print(c.pow())
+
+
+
+
+
 
 
 
