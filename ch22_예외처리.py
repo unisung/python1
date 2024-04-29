@@ -158,3 +158,16 @@ try:
 except MyError2 as e:
     print(e)
 print(acc1)
+
+# 상품재고클래스 생성
+# 상품코드 8801123, '새우깡', 재고 100
+# 재고 없을시 StockError 예외 발생 '재고가 없습니다'
+# 입고: 50, 입고 20, 출고 200시 예외발생후 이전 재고량출력
+class Stock:
+    #itemcode, name, qty
+    #입고 deposit()
+    #출고 withdraw()
+    #__str__()
+    #입/출고량 amount
+
+
