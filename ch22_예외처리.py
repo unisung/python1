@@ -197,6 +197,7 @@ itemcode=input('상품코드:')
 name=input('상품명:')
 qty=int(input('재고:'))
 
+# 1.재고생성, 2. 입고, 3. 출고, 4.재고리스트, 5. 종료
 try:
     a=Stock(itemcode,name,qty)
     print(a)
