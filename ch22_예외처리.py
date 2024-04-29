@@ -34,38 +34,70 @@
 #     print('파일닫기')
 
 #여러개 예외 처리
-try:
-    a=[1,2]
-    print(a[3]) # index오류
-    4/0  # 0으로 나눈 오류
-except ZeroDivisionError:
-    print("0으로 나눌수 없습니다.")
-except IndexError:
-    print("인덱싱 할수 없습니다.")
+# try:
+#     a=[1,2]
+#     print(a[3]) # index오류
+#     4/0  # 0으로 나눈 오류
+# except ZeroDivisionError:
+#     print("0으로 나눌수 없습니다.")
+# except IndexError:
+#     print("인덱싱 할수 없습니다.")
+#
+# finally:
+#     print('종료!!!!')
+# # as
+# try:
+#     a=[1,2]
+#     print(a[3]) # index오류
+#     4/0  # 0으로 나눈 오류
+# except ZeroDivisionError as e:
+#     print(e)
+# except IndexError as e:
+#     print(e)
+#
+# finally:
+#     print('종료!!!!')
+#
+# # except예외 같이 사용
+# try:
+#     a=[1,2]
+#     print(a[3]) # index오류
+#     4/0  # 0으로 나눈 오류
+# except (ZeroDivisionError,IndexError) as e: #(예외객체나열) as e
+#     print(e)
+#
+# finally:
+#     print('종료!!!!')
+#
+# #try~else문
+# try:
+#     age=int(input('나이를 입력하세요:'))
+# except:
+#     print("입력이 정확하지않음")
+# else: #오류가 없으면 실행하는 문장
+#     if age<=18:
+#         print('미성년자 출금')
+#     else:
+#         print('환영합니다.')
+#
+#
+#  #오류발생시 지나가기
+# try:
+#      f=open('없는파일.txt','r')
+# except FileNotFoundError:
+#      pass
 
-finally:
-    print('종료!!!!')
-# as
-try:
-    a=[1,2]
-    print(a[3]) # index오류
-    4/0  # 0으로 나눈 오류
-except ZeroDivisionError as e:
-    print(e)
-except IndexError as e:
-    print(e)
+#오류 강제발생
+class Bird: #새 추상적 개념
+    def fly(self):
+        raise NotImplementedError
 
-finally:
-    print('종료!!!!')
+class Eagle(Bird):
+    def fly(self):
+        print("very fast")
 
-# except예외 같이 사용
-try:
-    a=[1,2]
-    print(a[3]) # index오류
-    4/0  # 0으로 나눈 오류
-except (ZeroDivisionError,IndexError) as e: #(예외객체나열) as e
-    print(e)
+eagle = Eagle()
+eagle.fly()
 
-finally:
-    print('종료!!!!')
+# 사용자 정의 예외 만들기
 
