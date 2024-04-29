@@ -163,11 +163,54 @@ print(acc1)
 # 상품코드 8801123, '새우깡', 재고 100
 # 재고 없을시 StockError 예외 발생 '재고가 없습니다'
 # 입고: 50, 입고 20, 출고 200시 예외발생후 이전 재고량출력
+class StockError(Exception):
+    def __str__(self):
+        return '재고가 없습니다'
+
 class Stock:
     #itemcode, name, qty
     #입고 deposit()
     #출고 withdraw()
     #__str__()
     #입/출고량 amount
+    def __init__(self,itemcode, name, qty):
+        self.itemcode=itemcode
+        self.name=name
+        self.qty=qty
+
+    def deposit(self, amount):
+        self.qty += amount
+
+    def withdraw(self, amount):
+        if self.qty - amount < 0:
+            raise StockError
+        self.qty -= amount
+
+    def getbalance(self):
+        return self.qty
+
+    def __str__(self):
+        return ('상품코드:' + self.itemcode + ', 상품명:'
+                + self.name + ' 재고:' + str(self.qty))
+
+itemcode=input('상품코드:')
+name=input('상품명:')
+qty=int(input('재고:'))
+
+try:
+    a=Stock(itemcode,name,qty)
+    print(a)
+    amount=int(input('입고수량:')) #50
+    a.deposit(amount)
+    print(a)
+    amount = int(input('입고수량:')) # 20
+    a.deposit(amount)
+    print(a)
+    amount = int(input('출고수량:')) # 200
+    a.withdraw(amount)
+
+except StockError as e:
+    print(e)
+print(a)
 
 
