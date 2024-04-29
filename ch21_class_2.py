@@ -58,8 +58,31 @@ c.setdata(10,20)
 print(c.div())
 
 
+class Family:
+    lastname='김'  # 변수 <- 클래스변수
+    def __init__(self,name):
+        self.name=name  #self.변수 <- instance변수
+
+    def nameInfo(self):
+        return Family.lastname +' '+self.name # 클래스명.변수명
 
 
+f=Family('길동')
+print(f.nameInfo())
+
+f=Family('길동')
+print(f.nameInfo())
+
+Family.lastname='김' #클래스변수의 값 변경 클래스명.변수명=값
+print(f.nameInfo())
+
+#파이썬은 인스턴스 변수를 동적으로 할당가능
+f.lastname='강'  # 참조변수.변수명 <- 인스턴스변수 추가
+print(f.nameInfo())
+
+#필요한 변수를 동적으로 할당 가능
+f.age = 18
+print(f.nameInfo(), f.age)
 
 
 
