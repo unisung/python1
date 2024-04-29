@@ -66,6 +66,8 @@ class Family:
     def nameInfo(self):
         return Family.lastname +' '+self.name # 클래스명.변수명
 
+    def __str__(self):
+        return self.nameInfo()
 
 f=Family('길동')
 print(f.nameInfo())
@@ -83,6 +85,18 @@ print(f.nameInfo())
 #필요한 변수를 동적으로 할당 가능
 f.age = 18
 print(f.nameInfo(), f.age)
+
+def makeFamily(lastname, name, count):
+    families=[]
+    for i in range(count):
+        Family.lastname=lastname
+        families.append(Family(name+str(i)))
+    for a in families:
+        print(a)
+    #print(families)
+
+
+makeFamily('김','길동',3)
 
 
 
