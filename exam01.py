@@ -35,6 +35,7 @@ phone_number="010-1111-2222"
 phone_number=phone_number.replace("-"," ")
 # 13. a="3", b="4"  print(a+b) 결과
 # 14. 화면에 '-'를 80개 출력하세요
+print('-'*80)
 # 15.
 t1='python'
 t2='java'
