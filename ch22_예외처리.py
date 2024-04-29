@@ -124,3 +124,37 @@ try:
     say_nick('바보')
 except MyError as e:
     print(e)
+class MyError2(Exception):
+    def __str__(self):
+        return "출금액이 잔고보다 큽니다."
+class Account:
+    def __init__(self,accountNo, owner, balance):
+        self.accountNo=accountNo
+        self.owner=owner
+        self.balance=balance
+
+    def deposit(self,amount):
+        self.balance +=amount
+
+    def withdraw(self,amount):
+        if self.balance - amount < 0:
+            raise MyError2
+        self.balance -=amount
+
+    def getbalance(self):
+        return self.balance
+
+    def __str__(self):
+        return ('계좌번호:'+self.accountNo+', 소유자:'
+                + self.owner + ' 잔고:'+str(self.balance))
+
+acc1 = Account('a10117','홍길동',10000)
+try:
+    print(acc1.getbalance())
+    print(acc1)
+    acc1.deposit(10000)
+    print(acc1)
+    acc1.withdraw(50000)
+except MyError2 as e:
+    print(e)
+print(acc1)
