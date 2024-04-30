@@ -96,8 +96,77 @@ def myfunc2(msg):
 myfunc2("You need python")
 
 
+from abc import *
+class AbsrtactCountry(metaclass=ABCMeta):
+    name='국가명'
+    population='인구'
+    capital='수도'
+    def show(self):
+        print('클래스메소드')
+
+    @abstractmethod
+    def show_capital(self):
+        print('국가의 수도')
+
+#a=AbsrtactCountry()
+
+class Korean(AbsrtactCountry):
+    def __init__(self,name, population,capital):
+        self.name=name,
+        self.population=population
+        self.capital=capital
+
+    def show_capital(self):
+        super().show_capital()
+        print(self.capital)
+
+a=Korean('대한민국',5000000, '서울')
 
 
+# @classmethod, @staticmethod
+class CustomClass:
+    def add_instance_method(self,a,b):
+        return a+b
+
+    @classmethod # 클래스에 소속된메소드
+    def add_class_method(cls,a,b):
+        return a+b
+
+    @staticmethod #클래스에 소속되지않은 메소드
+    def add_static_method(a,b):
+        return a+b
 
 
+print(CustomClass.add_instance_method(None,3,5))
+#print(CustomClass.add_class_method(None,3,5))
+print(CustomClass.add_static_method(3,5))
+
+a=CustomClass()
+print(a.add_class_method(3,5))
+print(a.add_static_method(3,5))
+
+
+# class - 덕 타이핑(Duck Typing)
+class Parrot:
+    def fly(self):
+        print("Parrot flying")
+
+class Airplain:
+    def fly(self):
+        print("airplain flying")
+
+class Whale:
+    def swim(self):
+        print("Whale swimming")
+
+def lift_off(entity):
+    entity.fly()
+
+parrot = Parrot()
+airplane=Airplain()
+whale=Whale()
+
+lift_off(parrot)
+lift_off(airplane)
+#lift_off(whale)
 
