@@ -1,0 +1,2179 @@
+
+
+
+
+<!DOCTYPE HTML>
+<html lang="ko">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="mzkAy71X1qQFWihQN535LoiToXg34MUg9nuor7Og9E8" />
+    <meta name="naver-site-verification" content="a7b53e9ea172d3cefcc05eaba6ebf7180eca08fa" />
+    <meta name="description" content="온라인 책을 제작 공유하는 플랫폼 서비스">
+
+    
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="위키독스">
+<meta property="og:title" content="02-1 숫자형">
+<meta property="og:description" content="숫자형(Number)이란 숫자 형태로 이루어진 자료형으로, 우리가 이미 잘 알고 있는 것이다. 우리가 흔히 사용하는 숫자들을 생각해 보자. 123과 같은 정수, 12.34와 같은…">
+<meta property="og:image" content="https://wikidocs.net/images/book/j2p_cover_4pwFNUD_Lirmdrv_U1UQjo8_e0LkdJf_RfBYr9e_HuNZjDQ_GPEKYKk_TiflQiw_bpi6gBP_c_5JHGBkJ.jpg">
+<meta property="og:url" content="https://wikidocs.net/12">
+
+
+    <link rel="shortcut icon" type="image/x-icon" href="/static/img/favicon.ico">
+    <link rel="canonical" href="https://wikidocs.net/book/1">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap">
+
+    <title>02-1 숫자형 - 점프 투 파이썬</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    -->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    
+<style>
+a.wiki_link {
+    color: #8B0000;
+    text-decoration: none;
+}
+a.wiki_link:hover {
+    text-decoration: underline;
+}
+.popover{
+    max-width: 500px; /* Max Width of the popover (depending on the container!) */
+}
+</style>
+
+    <link type="text/css" href="/static/book/css/style_stack.css?v=6" rel="stylesheet"  media="screen" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/static/book/js/utils.js"></script>
+    <script type="text/javascript" src="/static/book/js/base.js?v=1"></script>
+    <script type="text/javascript">
+    function recommend_book(book_id) {
+        var msg = [];
+        msg.push('<div class="alert alert-info">');
+        msg.push('<p><strong>책을 추천합니다.</strong></p>');
+        msg.push('정말로 추천하시겠습니까?</p>');
+        msg.push('</div>');
+        msg.push('<span class="muted">※ 추천취소는 불가능합니다.</span>');
+
+        apprise(msg.join(''), {'verify':true}, function(r) {
+            if(r) {
+                location.href = "/book/recommend/"+book_id;
+            }
+        });
+        return;
+    }
+    </script>
+    
+    
+
+
+<link type="text/css" href="/static/apprise/apprise.min.css" rel="stylesheet"  />
+<link type="text/css" href="/static/book/css/markdown_stack.css?v=4" rel="stylesheet" />
+<link type="text/css" href="/static/treeview/bootstrap-treeview.min.css" rel="stylesheet" />
+<link type="text/css" href="/static/book/css/copycode.css" rel="stylesheet" />
+
+<!--  -->
+
+<style>
+.wp-content p {
+    margin: 5px 0;
+}
+a.wiki_title {
+    color: #8B0000;
+    text-decoration: none;
+    font-size: 16px;
+}
+a.inner_link {
+    color: #8B0000;
+    text-decoration: none;
+}
+a.wiki_title:hover, a.inner_link:hover {
+    text-decoration: underline;
+}
+#search-results {
+    width: 100%;
+    cursor: pointer;
+    padding:0;
+    margin:0;
+    background-color: #f2f2f2;
+    border-top:none;
+    border-radius: 0; /* 모서리의 radius를 0으로 설정 */
+    font-weight:bold;
+}
+#search-results li {
+    margin: 0;
+    padding: 5px 30px;
+}
+.result-item {
+    white-space: normal;
+    padding: 0 15px;
+    color:#000;
+}
+
+.dropdown-menu .active {
+    background-color: #000;
+    outline: none;
+    color:#fff;
+}
+</style>
+
+<script type="text/javascript" src="/static/apprise/apprise-1.5.min.js"></script>
+<script type="text/javascript" src="/static/scroll/jquery.nicescroll.js"></script>
+<!-- <script type="text/javascript" src="/static/book/js/page.js?v=20210601_01"></script> -->
+<link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+
+<!-- 수식입력 mathjax -->
+<script>
+window.MathJax = {
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore',
+    processHtmlClass: 'tex2jax_process'
+  },
+  loader: {load: ['[tex]/physics', '[tex]/braket']},
+  tex: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    packages: {'[+]': ['physics', 'braket']}
+  }
+};
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- 수식입력 mathjax -->
+
+<script>
+$(document).ready(function () {
+//    $("pre").addClass("prettyprint");
+//    prettyPrint();
+
+    $("#show_toc_btn").click(function () {
+        $(".toc").removeClass("hide");
+        $(".toc").show();
+        $("#show_toc_btn").hide();
+    });
+
+    $("#feedback_btn").click(function () {
+
+        var page_id = $("#page_id").val();
+        var email = $("#email").val();
+        var feedback = $("#feedback").val();
+
+        if (!email) {
+            apprise('답장받을 이메일을 입력하세요.', {}, function () {
+                $("#email").focus();
+            });
+            return;
+        }
+
+        if (!validateEmail(email)) {
+            apprise('이메일을 정확하게 입력 해 주세요.', {}, function () {
+                $("#email").focus();
+            });
+            return;
+        }
+
+        if (!feedback) {
+            apprise('피드백을 입력하세요.', {}, function () {
+                $("#feedback").focus();
+            });
+            return;
+        }
+
+        $.post("/feedback", {
+            "page_id": page_id,
+            "email": email,
+            "feedback": feedback
+        }, function (data) {
+            apprise('피드백을 남겨주셔서 감사합니다.', {}, function () {
+                $('#myModal').modal('hide');
+            });
+        }, "html");
+
+    });
+
+    $("#report_btn").click(function () {
+        var comment_id = $("#comment_id").val();
+        var report = $("#report").val();
+
+        if (!report) {
+            apprise('신고사유를 입력하세요.', {}, function () {
+                $("#report").focus();
+            });
+            return;
+        }
+
+        $.post("/page/comment/report", {
+            "comment_id": comment_id,
+            "report": report
+        }, function (result) {
+            if(result.success) {
+                apprise('신고가 접수되었습니다. 검토까지는 최대 24시간 소요됩니다.', {}, function () {
+                    $('#reportModal').modal('hide');
+                });
+            }else {
+                $('#reportModal').modal('hide');
+                alert(result.message);
+            }
+            
+        }, "json");
+
+    });
+
+    $("body").on('click', "#comment_btn", function () {
+        var content = $("#content").val();
+        if (!content) {
+            apprise('댓글을 입력해 주세요', {verify: false}, function (r) {
+                $("#content").focus();
+            });
+            return false;
+        }
+
+        $.post("/page/comment/save", {
+            "page_id": $("#page_id").val(),
+            "content": content
+        }, function (result) {
+            if (result.success) {
+                get_page_comments(result.page_id);
+            }else {
+                alert(result.message);
+            }
+        }, "json");
+    });
+
+    $('a[href="#top"]').click(function () {
+        $('html,body').animate({ scrollTop: $("body").offset().top},
+            {duration: 'normal', easing: 'swing'});
+        return false;
+    });
+
+    var hash = window.location.hash;
+    if(hash.indexOf("#comment") != -1) {
+        show_comments();
+    }
+
+    // 외부 링크는 새창으로 열도록 수정.
+    $('a').each(function() {
+        var a = new RegExp('/' + window.location.host + '/');
+        try {
+            if(this.href && !a.test(this.href) && this.href.indexOf('wikidocs.net') === -1 && this.href.startsWith('http')) {
+                $(this).click(function(event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    window.open(this.href, '_blank');
+                });
+            }
+        }catch(e) {
+        }
+    });
+
+    // popover
+    var is_mobile = "True";
+    let _trigger = 'click';  // focus(다른 곳 클릭시 팝업 닫힘), click 
+    let _hide = 0;  // focus일 때는 200이 적당
+    if (is_mobile == "True") {
+        _trigger = 'click';
+        _hide = 0;
+    }
+    
+    $('.wiki_link').on('click', function(event) {
+        var el = $(this);
+        
+        // disable this event after first binding 
+        el.off(event);
+
+        let _title = el.data('title');
+        _title = "<a class='wiki_title' href='/wiki/"+_title+"' target='_wiki'>" +_title + "</a>"+
+                '<button style="margin-left:10px;" type="button" id="close" class="close">&times;</button>';
+        
+        // add initial popovers with LOADING text
+        el.popover({
+            title: _title,
+            content: "loading...", // maybe some loading animation like <img src='loading.gif />
+            html: true,
+            placement: "bottom",
+            container: 'body',
+            trigger: _trigger,
+            delay: {"show": 0, "hide": _hide}
+        }).on('shown.bs.popover', function (eventShown) {
+            var $popup = $('#' + $(eventShown.target).attr('aria-describedby'));
+            $popup.find('button.close, a.wiki_title, a.inner_link').click(function (e) {
+                el.trigger('click');
+            });
+        });
+
+        // show this LOADING popover
+        // el.popover('show');
+
+        // requesting data from unsing url from data-poload attribute
+        $.get(el.data('wiki'), function (d) {
+            let $tempDiv = $('<div>').html(d);
+            $tempDiv.find('a').attr('target', '_blank');
+            d = $tempDiv.html();
+
+            // set new content to popover
+            el.data('bs.popover').options.content = d;
+
+            // reshow popover with new content
+            // el.popover('show');
+            el.trigger('click');
+        });
+    });
+});
+
+$(window).load(function () {
+    if (!TOC_HEIGHT) {
+//        init_toc();
+    }
+
+    resizeMenu();
+});
+
+function resizeMenu() {
+    var wh = $(window).height() - 220;
+    var ph = get_height(".page");
+    var h = Math.max(wh, ph);
+    $(".scrollable-menu").css("max-height", h+"px");
+}
+
+function touch_toc() {
+    if ($(".page img").length == 0) {
+        init_toc();
+    }
+}
+
+var TOC_HEIGHT;
+function init_toc() {
+    var selected_toc_li_top = $(".selected_toc_li").offset().top;
+    var page_height = get_height(".page");
+    var toc_height = get_height(".toc-area");
+    TOC_HEIGHT = toc_height;
+
+//    console.log("page_height:"+page_height);
+
+    if (toc_height >= 480) {
+        if (page_height - 145 <= 480) {
+            $(".toc-area").css("height", (page_height - 145) + "px");
+            $(".toc-open").show();
+            $(".toc-area").niceScroll({"cursorcolor": "#888"});
+            $(".toc-area").scrollTop(selected_toc_li_top - 200);
+        } else if (toc_height > 480) {
+            $(".toc-area").css("height", "480px");
+            $(".toc-open").show();
+            $(".toc-area").niceScroll({"cursorcolor": "#888"});
+            $(".toc-area").scrollTop(selected_toc_li_top - 200);
+        }
+    }
+
+    if (page_height > 480 + 300) {
+        $(".toc-ads").show();
+    }
+}
+function open_toc() {
+    $(".toc-area").css("overflow-y", "visible");
+    $(".toc-area").css("height", TOC_HEIGHT + "px");
+    $(".toc-open").hide();
+}
+function get_height(element) {
+    var _height = $(element).css("height");
+    return parseInt(_height.split("px")[0]);
+}
+
+function remove_comment(comment_id) {
+    apprise('정말로 삭제하시겠습니까?', {verify: true}, function (r) {
+        if (r) {
+            $.post("/page/comment/remove", {
+                "comment_id": comment_id
+            }, function (result) {
+                if (result.success) {
+                    get_page_comments(result.page_id);
+                }else {
+                    alert(result.message);
+                }
+                // $(".comments").html(data);
+            }, "json");
+        }
+    });
+}
+
+function reply_comment(comment_name) {
+    $(".user_comments #content").val("@"+comment_name+"님 ");
+    $(".user_comments #content").focus();
+}
+
+function show_comments() {
+    $(".user_comments").toggle();
+}
+
+function show_book_comments() {
+    $(".pages").css("display", "none");
+    $(".comments").toggle();
+}
+
+function show_book_pages() {
+    $(".comments").css("display", "none");
+    $(".pages").toggle();
+
+}
+
+function get_all_page_comments(page_id) {
+    $.ajax({
+        type: "POST",
+        url: "/page/comment/all",
+        data: {'page_id': page_id},
+        dataType: "html",
+        success: function(data) {
+            $("#page_all_comments").html(data);
+        }
+    });
+}  
+
+function get_page_comments(page_id) {
+    $.ajax({
+        type: "POST",
+        url: "/page/comment/get",
+        data: {'page_id': page_id},
+        dataType: "html",
+        success: function(data) {
+            $(".comments").html(data);
+            $("#content").val("");
+        }
+    });
+}
+
+function report_modal(comment_id) {
+    // console.log(comment_id);
+    $("#comment_id").val(comment_id);
+    $('#reportModal').modal('show')
+}
+</script>
+
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-2686629-3']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6N5MJRGLWG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-6N5MJRGLWG');
+    </script>
+</head>
+<body>
+
+
+    <!-- PC -->
+
+
+
+
+
+
+
+
+<div class="container" style="padding-bottom:50px;">
+
+<div class="content row tex2jax_ignore" style="margin-top:0px;">
+    <div class="col-sm-3">
+        
+<div class="row">
+    <div class="col-sm-3 sidebar" style="padding:0;margin:0;overflow-x: hidden;">
+        
+        <div class="row" style="display:none;">
+            <div class="col-xs-12" style="border-bottom:solid 1px #ddd;">
+                <button id="toggle_toc_btn" class="btn btn-sm btn-default" style="margin:10px;">목차보기</button>
+                <label for="toc_on" class="small">
+                    <input type="radio" id="toc_on" name="toc_on_off" value="show"> Show
+                </label>
+                <label for="toc_off" class="small">
+                    <input type="radio" id="toc_off" name="toc_on_off" value="hide"> Hide
+                </label>
+            </div>
+        </div>
+        
+
+        <div class="toc toc-checker">
+            <div class="row">
+                <div class="col-xs-12" style="padding:0;">
+                    <div class="row clearfix" style="margin:0;padding:0;border-bottom:solid 1px #ccc;">
+                        <div class="pull-left" style="width:75%;">
+                            <input type="text" style="margin-left:15px;" id="kw" name="kw" class="input-search" placeholder="검색어를 입력하세요." autocomplete="off">
+                            <ul id="search-results" class="dropdown-menu" aria-labelledby="kw"></ul>
+                        </div>
+                        <div class="pull-right">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="list-group list-group-toc" style="margin:0;">
+                <a class="list-group-item " href="/book/1" style="margin:0;">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;" title="점프 투 파이썬">
+                        
+                            <i class="glyphicon glyphicon-book"></i>
+                        
+                        <strong>점프 투 파이썬</strong>
+                    </span>
+                </a>
+
+                
+                <a href="javascript:page(2)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="00장 들어가기 전에">
+                        <span style="padding-left:0px">
+                        
+                        00장 들어가기 전에
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(4319)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="00-1 머리말">
+                        <span style="padding-left:20px">
+                        
+                        00-1 머리말
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(4320)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="00-2 저자소개">
+                        <span style="padding-left:20px">
+                        
+                        00-2 저자소개
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(202337)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="00-3 동영상 강의">
+                        <span style="padding-left:20px">
+                        
+                        00-3 동영상 강의
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(202412)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="00-4 소스 코드">
+                        <span style="padding-left:20px">
+                        
+                        00-4 소스 코드
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(4321)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="00-5 책 구입 안내">
+                        <span style="padding-left:20px">
+                        
+                        00-5 책 구입 안내
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(742)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="00-6 주요변경이력">
+                        <span style="padding-left:20px">
+                        
+                        00-6 주요변경이력
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(5)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="01장 파이썬이란 무엇인가?">
+                        <span style="padding-left:0px">
+                        
+                        01장 파이썬이란 무엇인가?
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(4307)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="01-1 파이썬이란?">
+                        <span style="padding-left:20px">
+                        
+                        01-1 파이썬이란?
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(6)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="01-2 파이썬의 특징">
+                        <span style="padding-left:20px">
+                        
+                        01-2 파이썬의 특징
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(7)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="01-3 파이썬으로 무엇을 할 수 있을까?">
+                        <span style="padding-left:20px">
+                        
+                        01-3 파이썬으로 무엇을 할 수 있을까?
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(8)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="01-4 파이썬 설치하기">
+                        <span style="padding-left:20px">
+                        
+                        01-4 파이썬 설치하기
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(9)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="01-5 파이썬 둘러보기">
+                        <span style="padding-left:20px">
+                        
+                        01-5 파이썬 둘러보기
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(17684)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="01-6 파이썬과 에디터">
+                        <span style="padding-left:20px">
+                        
+                        01-6 파이썬과 에디터
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(11)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="02장 파이썬 프로그래밍의 기초, 자료형">
+                        <span style="padding-left:0px">
+                        
+                        02장 파이썬 프로그래밍의 기초, 자료형
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(12)" class="list-group-item active">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="02-1 숫자형">
+                        <span style="padding-left:20px">
+                        
+                        02-1 숫자형
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(13)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="02-2 문자열 자료형">
+                        <span style="padding-left:20px">
+                        
+                        02-2 문자열 자료형
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(14)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="02-3 리스트 자료형">
+                        <span style="padding-left:20px">
+                        
+                        02-3 리스트 자료형
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(15)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="02-4 튜플 자료형">
+                        <span style="padding-left:20px">
+                        
+                        02-4 튜플 자료형
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(16)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="02-5 딕셔너리 자료형">
+                        <span style="padding-left:20px">
+                        
+                        02-5 딕셔너리 자료형
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(1015)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="02-6 집합 자료형">
+                        <span style="padding-left:20px">
+                        
+                        02-6 집합 자료형
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(17)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="02-7 불 자료형">
+                        <span style="padding-left:20px">
+                        
+                        02-7 불 자료형
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(18)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="02-8 자료형의 값을 저장하는 공간, 변수">
+                        <span style="padding-left:20px">
+                        
+                        02-8 자료형의 값을 저장하는 공간, 변수
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(180351)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="02장 되새김 문제">
+                        <span style="padding-left:20px">
+                        
+                        02장 되새김 문제
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(19)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="03장 프로그램의 구조를 쌓는다! 제어문">
+                        <span style="padding-left:0px">
+                        
+                        03장 프로그램의 구조를 쌓는다! 제어문
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(20)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="03-1 if문">
+                        <span style="padding-left:20px">
+                        
+                        03-1 if문
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(21)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="03-2 while문">
+                        <span style="padding-left:20px">
+                        
+                        03-2 while문
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(22)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="03-3 for문">
+                        <span style="padding-left:20px">
+                        
+                        03-3 for문
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(180354)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="03장 되새김 문제">
+                        <span style="padding-left:20px">
+                        
+                        03장 되새김 문제
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(23)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="04장 파이썬의 입출력">
+                        <span style="padding-left:0px">
+                        
+                        04장 파이썬의 입출력
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(24)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="04-1 함수">
+                        <span style="padding-left:20px">
+                        
+                        04-1 함수
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(25)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="04-2 사용자 입출력">
+                        <span style="padding-left:20px">
+                        
+                        04-2 사용자 입출력
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(26)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="04-3 파일 읽고 쓰기">
+                        <span style="padding-left:20px">
+                        
+                        04-3 파일 읽고 쓰기
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(180507)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="04-4 프로그램의 입출력">
+                        <span style="padding-left:20px">
+                        
+                        04-4 프로그램의 입출력
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(180356)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="04장 되새김 문제">
+                        <span style="padding-left:20px">
+                        
+                        04장 되새김 문제
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(27)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="05장 파이썬 날개 달기">
+                        <span style="padding-left:0px">
+                        
+                        05장 파이썬 날개 달기
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(28)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="05-1 클래스">
+                        <span style="padding-left:20px">
+                        
+                        05-1 클래스
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(29)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="05-2 모듈">
+                        <span style="padding-left:20px">
+                        
+                        05-2 모듈
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(1418)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="05-3 패키지">
+                        <span style="padding-left:20px">
+                        
+                        05-3 패키지
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(30)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="05-4 예외 처리">
+                        <span style="padding-left:20px">
+                        
+                        05-4 예외 처리
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(32)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="05-5 내장 함수">
+                        <span style="padding-left:20px">
+                        
+                        05-5 내장 함수
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(33)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="05-6 표준 라이브러리">
+                        <span style="padding-left:20px">
+                        
+                        05-6 표준 라이브러리
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(180538)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="05-7 외부 라이브러리">
+                        <span style="padding-left:20px">
+                        
+                        05-7 외부 라이브러리
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(180359)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="05장 되새김 문제">
+                        <span style="padding-left:20px">
+                        
+                        05장 되새김 문제
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(34)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="06장 파이썬 프로그래밍, 어떻게 시작해야 할까?">
+                        <span style="padding-left:0px">
+                        
+                        06장 파이썬 프로그래밍, 어떻게 시작해야 할까?
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(35)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="06-1 내가 프로그램을 만들 수 있을까?">
+                        <span style="padding-left:20px">
+                        
+                        06-1 내가 프로그램을 만들 수 있을까?
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(40)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="06-2 3과 5의 배수를 모두 더하기">
+                        <span style="padding-left:20px">
+                        
+                        06-2 3과 5의 배수를 모두 더하기
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(38)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="06-3 게시판 페이징하기">
+                        <span style="padding-left:20px">
+                        
+                        06-3 게시판 페이징하기
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(36)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="06-4 간단한 메모장 만들기">
+                        <span style="padding-left:20px">
+                        
+                        06-4 간단한 메모장 만들기
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(37)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="06-5 탭 문자를 공백 문자 4개로 바꾸기">
+                        <span style="padding-left:20px">
+                        
+                        06-5 탭 문자를 공백 문자 4개로 바꾸기
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(39)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="06-6 하위 디렉터리 검색하기">
+                        <span style="padding-left:20px">
+                        
+                        06-6 하위 디렉터리 검색하기
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(184208)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="07장 파이썬 날아오르기">
+                        <span style="padding-left:0px">
+                        
+                        07장 파이썬 날아오르기
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(184209)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="07-1 파이썬과 유니코드">
+                        <span style="padding-left:20px">
+                        
+                        07-1 파이썬과 유니코드
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(184210)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="07-2 클로저와 데코레이터">
+                        <span style="padding-left:20px">
+                        
+                        07-2 클로저와 데코레이터
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(184211)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="07-3 이터레이터와 제너레이터">
+                        <span style="padding-left:20px">
+                        
+                        07-3 이터레이터와 제너레이터
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(184212)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="07-4 파이썬 타입 어노테이션">
+                        <span style="padding-left:20px">
+                        
+                        07-4 파이썬 타입 어노테이션
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(1669)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="08장 정규표현식">
+                        <span style="padding-left:0px">
+                        
+                        08장 정규표현식
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(1642)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="08-1 정규 표현식 살펴보기">
+                        <span style="padding-left:20px">
+                        
+                        08-1 정규 표현식 살펴보기
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(4308)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="08-2 정규 표현식 시작하기">
+                        <span style="padding-left:20px">
+                        
+                        08-2 정규 표현식 시작하기
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(4309)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="08-3 강력한 정규 표현식의 세계로">
+                        <span style="padding-left:20px">
+                        
+                        08-3 강력한 정규 표현식의 세계로
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(202338)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="09장 부록">
+                        <span style="padding-left:0px">
+                        
+                        09장 부록
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(180361)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="09-1 파이썬 코딩 면허 시험 20제">
+                        <span style="padding-left:20px">
+                        
+                        09-1 파이썬 코딩 면허 시험 20제
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(193066)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="09-2 챗GPT와 함께 파이썬 공부하기">
+                        <span style="padding-left:20px">
+                        
+                        09-2 챗GPT와 함께 파이썬 공부하기
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(180362)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="10장 정답 및 풀이">
+                        <span style="padding-left:0px">
+                        
+                        10장 정답 및 풀이
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(78308)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="마치며.">
+                        <span style="padding-left:0px">
+                        
+                        마치며.
+                        </span>
+                    </span>
+                </a>
+                
+            </div>
+        </div>
+        
+        <input type="hidden" name="request_mobile" id="request_mobile" value="0" />
+    </div>
+</div>
+
+<script>
+function myTrim(x) {
+    return x.replace(/^\s+|\s+$/gm,'');
+}
+
+function search_json() {
+    var kw = myTrim($("#kw").val());
+    if(!kw) {
+        return;
+    }
+
+    location.href = "/book/search/result/1?keyword="+kw;
+}
+
+$(document).ready(function () {
+    $(".book-search").on("click", function() {
+        $("#search_form").submit();
+    });
+
+    $("#mobile_search_btn").on("click", function() {
+        search_json();
+    });
+
+    $(".home").on("click", function() {
+        location.href = "/";
+    });
+
+    if (typeof(Storage) !== "undefined") {
+        if(localStorage.sidebar == "hidden") {
+            menuToggle();
+        }else {
+            $(".sidebar").show();
+            $(".toc-header").show();
+        }
+    }else {
+        $(".sidebar").show();
+        $(".toc-header").show();
+    }
+
+    $(".toc").css("display", "block");
+    if (typeof(Storage) !== "undefined") {
+        $(".sidebar").scrollTop(localStorage.sp);
+    }
+
+    $(".sidebar").css("overflow-y", "auto");
+
+    $(".toc_item").on("click", function() {
+        var page_id = $(this).attr("page_id");
+        // $(".selected_toc").removeClass("selected_toc");
+        // $(this).addClass("selected_toc");
+        page(page_id);
+
+    });
+
+    $(".menu-toggle").on("click", function() {
+        menuToggle();
+
+        if (typeof(Storage) !== "undefined") {
+            if(localStorage.sidebar == "hidden") {
+                localStorage.sidebar = "show";
+            }else {
+                localStorage.sidebar = "hidden";
+            }
+        }
+    });
+
+    
+    $("input[name=toc_on_off]").on("click", function() {
+        var result = $(this).val();
+        if (typeof(Storage) !== "undefined") {
+            localStorage.toc = result;
+        }
+    });
+    if (typeof(Storage) !== "undefined") {
+        if (localStorage.getItem("toc") === null) {  // init value
+            localStorage.toc = "hide";
+        }
+        if(localStorage.toc == "hide") {
+            $('#toc_off').prop('checked', true);
+            $(".toc-checker").hide();
+        }else {
+            $('#toc_on').prop('checked', true);
+            $(".toc-checker").removeClass("hide");
+            $(".toc-checker").show();
+        }
+    }
+    
+
+    $("#load_content").show();
+});
+
+
+function menuToggle(no_sidebar) {
+    if(!no_sidebar) {
+        $(".sidebar").toggle();
+        $(".toc-header").toggle();
+    }
+    $("#load_content").toggleClass("col-sm-offset-3");
+    $("#load_content").toggleClass("col-sm-9");
+    $("#load_content").toggleClass("col-sm-12");
+    $("#load_content").toggleClass("sidebar-padding");
+    $(".prev_next_indicator").toggle();
+    $(".menu-group").toggle();
+}
+
+function page(no) {
+    var scrollpos = $(".sidebar").scrollTop();
+    if (typeof(Storage) !== "undefined") {
+        localStorage.sp = scrollpos;
+    }
+
+    location.href = "/"+no;
+    return false;
+
+    $(".selected_toc").removeClass("selected_toc");
+    $(".toc_item").each(function() {
+        var page_id = $(this).attr("page_id");
+        if(page_id == no) {
+            $(this).addClass("selected_toc");
+        }
+    });
+
+    var url = "/load/"+no;
+    $("#load_content").load(url, function(responseTxt, statusTxt, xhr){
+        if(statusTxt == "success") {
+            // alert("External content loaded successfully!");
+            $("#load_content").scrollTop(0);
+            window.history.pushState("object or string", "02-1 숫자형", "/"+no);
+        }
+        if(statusTxt == "error") {
+            alert("Error: " + xhr.status + ": " + xhr.statusText);
+        }
+    });
+
+}
+
+
+/* search keyword */
+$(document).ready(function() {
+    const $searchInput = $('#kw');
+    const $searchResults = $('#search-results');
+
+    const ajax_search = function(event) {
+        var query = $searchInput.val().trim();
+        if (query.length >= 1) {  // 예시로 2글자 이상 입력될 때 검색을 시작합니다.
+            $.ajax({
+                url: '/book/search.json/',  // 검색 요청을 처리할 서버의 URL
+                data: {
+                    'kw': query,
+                    'book_id': '1',
+                },
+                dataType: 'json',
+                success: function(data) {
+                    $searchResults.empty();
+                    if (data.results.length > 0) {
+                        data.results.forEach(function(item) {
+                            $searchResults.append('<li class="dropdown-item result-item" data-url="/'+item.id+'">' + item.subject + '</li>');
+                        });
+                        $searchResults.show();
+                    } else {
+                        $searchResults.hide();
+                    }
+                }
+            });
+        } else {
+            $searchResults.empty().hide();
+        }
+    }
+
+    $searchInput.on('keydown', function(event) {
+        if (event.key === 'ArrowDown') {
+            event.preventDefault();
+            const $results = $searchResults.find('li');
+            if ($results.length > 0) {
+                $results.first().addClass('active').attr('tabindex', -1).focus();
+            }
+        }else if(event.key == 'Escape') {
+            $searchResults.empty().hide();
+            $searchInput.val('');
+            $searchInput.attr('tabindex', -1).focus();
+        }
+    });
+
+    $searchInput.on('keyup', function(event) {
+        if (event.key === 'Enter') {
+            let val = $(this).val();
+            if (val.length >= 1) {
+                window.location.href = "/book/search/result/1?find_kw="+val+"&exact_match=1&page=1";
+            }
+        }else if(event.key == 'Escape') {
+            $searchResults.empty().hide();
+            $searchInput.val('');
+            $searchInput.attr('tabindex', -1).focus();
+        }else if (!event.key.startsWith('Arrow')) {
+            ajax_search(event);
+        }
+    });
+
+    $searchResults.on('keydown', 'li', function(event) {
+        const $results = $searchResults.find('li');
+        const currentIndex = $results.index(this);
+        if (event.key === 'ArrowDown') {
+            
+            event.preventDefault();
+            const nextIndex = (currentIndex + 1) % $results.length;
+            
+            $results.removeClass('active');
+            $results.eq(nextIndex).addClass('active').attr('tabindex', -1).focus();            
+        } else if (event.key === 'ArrowUp') {
+            event.preventDefault();
+            $results.removeClass('active');
+            if(currentIndex == 0) {
+                $searchInput.attr('tabindex', -1).focus();
+            }else {
+                const prevIndex = (currentIndex - 1 + $results.length) % $results.length;
+                $results.eq(prevIndex).addClass('active').attr('tabindex', -1).focus();
+            }
+        }else if(event.key == 'Enter') {
+            window.location.href = $(this).data('url');
+        }else if(event.key == 'Escape') {
+            $searchResults.empty().hide();
+            $searchInput.val('');
+            $searchInput.attr('tabindex', -1).focus();
+        }
+    });
+
+    $(document).on('click', function(event) {
+        if(event.target !== $searchResults[0]) {
+            $searchResults.empty().hide();
+        }
+    });
+
+    $(document).on('click', ".result-item", function(event) {
+        window.location.href = $(this).data('url');
+    });
+
+    $(".find-btn").on('click', function(event) {
+        let val = $searchInput.val();
+        // if (val.length >= 1) {
+            window.location.href = "/book/search/result/1?find_kw="+val+"&exact_match=1&page=1";
+        // }
+    })
+});
+
+
+</script>
+
+
+
+    </div>
+
+    
+    <div class="page col-sm-offset-3 col-sm-9" id="load_content" style="display:none;margin-top:0px;">
+        <!-- <div style="margin: 50px 0; padding: 20px; border: 1px solid #ddd; border-radius: 10px; background-color: #f9f9f9;">
+    <div style="font-size: 24px; font-weight: bold; margin-bottom: 20px;">[중요] 서버 점검 공지</div>
+    <div style="font-size: 16px; line-height: 1.6;">
+        <p>안녕하세요, 고객 여러분,</p>
+        <p>저희는 시스템의 안정성을 향상시키기 위해 예정된 서버 점검을 진행하게 되었습니다. 이로 인해 일시적으로 서비스 이용에 불편을 드릴 수 있음을 알려드립니다.</p>
+        <p><strong>- 점검 일시: 2023년 6월 17일 (토요일), 23시부터 24시까지 (1시간 동안)</strong></p>
+        <p>점검 동안에는 모든 서비스가 일시적으로 중단됩니다. 점검이 완료된 후에는 정상적으로 서비스를 이용하실 수 있습니다.</p>
+        <p>점검 시간 동안에는 서비스 이용이 불가능하오니, 이 점 참고하시어 불편함이 없으시길 바랍니다.</p>
+        <p>저희는 고객 여러분께 더 나은 서비스를 제공하기 위해 노력하고 있습니다. 이해와 협조에 감사드립니다.</p>
+        <p>감사합니다.</p>
+    </div>
+</div>
+ -->
+        
+
+
+
+
+
+
+
+
+<div class="btn-group pull-right menu-group" role="group">
+    <button class="btn btn-xs btn-default menu_link menu-toggle">
+        <i class="glyphicon glyphicon-menu-hamburger" title="메뉴"></i>
+    </button>
+</div>
+<div class="menu-wikidocs">
+</div>
+
+
+
+
+<div class="clearfix page-depth">
+    <ol class="breadcrumb pull-left">
+        <li><small><a href="/book/1"><i class="glyphicon glyphicon-book"></i> <strong>점프 투 파이썬</strong></a></small></li>
+        
+        <li><small><a href="/11">02장 파이썬 프로그래밍의 기초, 자료형</a></small></li>
+        
+        <li><small><a href="/12">02-1 숫자형</a></small></li>
+        
+    </ol>
+    
+    <ol class="breadcrumb pull-right">
+        
+
+        
+        <li>
+            <a href="/"><small class="logo"><i class="glyphicon glyphicon-home"></i> 위키독스</small></a>
+        </li>
+    </ol>
+    
+</div>
+
+
+<h1 class="page-subject">
+    02-1 숫자형
+    
+</h1>
+
+<!-- google adsense -->
+<!-- PC -->
+
+
+<!-- Mobile -->
+
+    
+        <div style="margin:20px 0;">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9470517771012578"
+     crossorigin="anonymous"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9470517771012578"
+     data-ad-slot="3685498833"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+        </div>
+    
+
+
+<!-- google adsense -->
+
+<div class="page-content tex2jax_process">
+    
+    <p>숫자형(Number)이란 숫자 형태로 이루어진 자료형으로, 우리가 이미 잘 알고 있는 것이다. 우리가 흔히 사용하는 숫자들을 생각해 보자. 123과 같은 정수, 12.34와 같은 실수, 8진수나 16진수도 있다.</p>
+<p>다음 표는 파이썬에서 숫자를 어떻게 사용하는지 간략하게 보여 준다.</p>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>파이썬 사용 예</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>정수</td>
+<td>123, -345, 0</td>
+</tr>
+<tr>
+<td>실수</td>
+<td>123.45, -1234.5, 3.4e10</td>
+</tr>
+<tr>
+<td>8진수</td>
+<td>0o34, 0o25</td>
+</tr>
+<tr>
+<td>16진수</td>
+<td>0x2A, 0xFF</td>
+</tr>
+</tbody>
+</table>
+<p>이제 이런 숫자를 파이썬에서는 어떻게 만들고 사용하는지 자세히 알아보자.</p>
+<div class="toc">
+<ul>
+<li><a href="#_1">숫자형은 어떻게 만들고 사용할까?</a><ul>
+<li><a href="#_2">정수형</a></li>
+<li><a href="#_3">실수형</a></li>
+<li><a href="#8-16">8진수와 16진수</a></li>
+</ul>
+</li>
+<li><a href="#_4">숫자형을 활용하기 위한 연산자</a><ul>
+<li><a href="#_5">사칙 연산</a></li>
+<li><a href="#x-y">x의 y제곱을 나타내는 ** 연산자</a></li>
+<li><a href="#_6">나눗셈 후 나머지를 리턴하는 % 연산자</a></li>
+<li><a href="#_7">나눗셈 후 몫을 리턴하는 // 연산자</a></li>
+<li><a href="#_8">복합 연산자</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="_1">숫자형은 어떻게 만들고 사용할까?</h2>
+<h3 id="_2">정수형</h3>
+<p>정수형(integer)이란 말 그대로 정수를 뜻하는 자료형을 말한다. 다음은 양의 정수와 음의 정수, 숫자 0을 변수 a에 대입하는 예이다.</p>
+<pre><code class="language-python">&gt;&gt;&gt; a = 123
+&gt;&gt;&gt; a = -178
+&gt;&gt;&gt; a = 0
+</code></pre>
+<h3 id="_3">실수형</h3>
+<p>파이썬에서 실수형(floating-point)은 소수점이 포함된 숫자를 말한다. 다음은 실수를 변수 a에 대입하는 예이다. 일반적으로 볼 수 있는 실수형의 소수점 표현 방식이다.</p>
+<pre><code class="language-python">&gt;&gt;&gt; a = 1.2
+&gt;&gt;&gt; a = -3.45
+</code></pre>
+<p>다음은 ‘컴퓨터식 지수 표현 방식’으로, 파이썬에서는 4.24e10 또는 4.24E10처럼 표현한다(e와 E 둘 중 어느 것을 사용해도 된다).</p>
+<pre><code class="language-python">&gt;&gt;&gt; a = 4.24E10
+&gt;&gt;&gt; a = 4.24e-10
+</code></pre>
+<p>여기서 4.24E10은 $4.24 * 10^{10}$, 4.24e-10은 $4.24 * 10^{-10}$을 의미한다.</p>
+<h3 id="8-16">8진수와 16진수</h3>
+<p>8진수(octal)를 만들기 위해서는 숫자가 0o 또는 0O(숫자 0 + 알파벳 소문자 o 또는 대문자 O)으로 시작하면 된다.</p>
+<pre><code class="language-python">&gt;&gt;&gt; a = 0o177
+&gt;&gt;&gt; print(a)
+127
+</code></pre>
+<blockquote>
+<p>0o177 = $1×8^2+7×8^1+7=127$</p>
+</blockquote>
+<p>16진수(hexadecimal)를 만들기 위해서는 0x로 시작하면 된다.</p>
+<pre><code class="language-python">&gt;&gt;&gt; a = 0x8ff
+&gt;&gt;&gt; b = 0xABC
+&gt;&gt;&gt; print(b)
+2748
+</code></pre>
+<blockquote>
+<p>0xABC = $10×16^2+11×16^1+12=2748$  (A:10, B:11, C:12)</p>
+</blockquote>
+<p>8진수나 16진수는 파이썬에서 잘 사용하지 않는 형태의 숫자 자료형이므로 간단히 눈으로만 익히고 넘어가자.</p>
+<h2 id="_4">숫자형을 활용하기 위한 연산자</h2>
+<h3 id="_5">사칙 연산</h3>
+<p>프로그래밍을 한 번도 해 본 적이 없는 독자라도 사칙 연산(<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>)은 알고 있을 것이다. 파이썬 역시 계산기와 마찬가지로 다음처럼 연산자를 사용해 사칙 연산을 수행한다.</p>
+<pre><code class="language-python">&gt;&gt;&gt; a = 3
+&gt;&gt;&gt; b = 4
+&gt;&gt;&gt; a + b
+7
+&gt;&gt;&gt; a - b
+-1
+&gt;&gt;&gt; a * b
+12
+&gt;&gt;&gt; a / b
+0.75
+</code></pre>
+<h3 id="x-y">x의 y제곱을 나타내는 ** 연산자</h3>
+<p>다음으로 알아야 할 연산자로 <code>**</code>라는 연산자가 있다. 이 연산자는 <code>x ** y</code>처럼 사용했을 때 x의 y제곱($x^y$) 값을 리턴한다. 다음 예를 통해 알아보자.</p>
+<pre><code class="language-python">&gt;&gt;&gt; a = 3
+&gt;&gt;&gt; b = 4
+&gt;&gt;&gt; a ** b
+81
+</code></pre>
+<h3 id="_6">나눗셈 후 나머지를 리턴하는 <code>%</code> 연산자</h3>
+<p>프로그래밍을 처음 접하는 독자라면 <code>%</code> 연산자는 본 적이 없을 것이다. <code>%</code>는 나눗셈의 나머지 값을 리턴하는 연산자이다. 7을 3으로 나누면 나머지는 1, 3을 7로 나누면 나머지는 3이 될 것이다. 다음 예로 확인해 보자.</p>
+<pre><code class="language-python">&gt;&gt;&gt; 7 % 3
+1
+&gt;&gt;&gt; 3 % 7
+3
+</code></pre>
+<p><img alt="" src="https://wikidocs.net/images/page/12/02_1_mod1.png" /></p>
+<h3 id="_7">나눗셈 후 몫을 리턴하는 // 연산자</h3>
+<p><code>/</code> 연산자를 사용하여 7 나누기 4를 하면 그 결과는 예상대로 1.75가 된다.</p>
+<pre><code class="language-python">&gt;&gt;&gt; 7 / 4
+1.75
+</code></pre>
+<p>이번에는 나눗셈 후 몫을 리턴하는 <code>//</code> 연산자를 사용한 경우를 살펴보자.</p>
+<pre><code class="language-python">&gt;&gt;&gt; 7 // 4
+1
+</code></pre>
+<p>1.75에서 몫에 해당하는 정숫값 1만 리턴하는 것을 확인할 수 있다.</p>
+<p><img alt="" src="https://wikidocs.net/images/page/12/02_1_mod2.png" /></p>
+<h3 id="_8">복합 연산자</h3>
+<p>복합 연산자는 앞서 살펴본 <code>+</code>, <code>-</code> 와 같은 산술 연산자와 대입 연산자(<code>=</code>)를 합쳐 놓은 것이다. 복합 연산자가 무엇인지 예를 통해 자세히 알아보자. </p>
+<p>먼저 다음과 같이 a에 1이라는 값을 대입해 보자.</p>
+<pre><code class="language-python">&gt;&gt;&gt; a = 1
+</code></pre>
+<p>이제 a의 값을 1만큼 증가시키려면 다음과 같이 할 수 있다.</p>
+<pre><code class="language-python">&gt;&gt;&gt; a = a + 1  # a + 1로 계산된 값을 다시 a에 대입한다.
+&gt;&gt;&gt; print(a)
+2
+</code></pre>
+<p><code>a = a + 1</code> 식에 의해 a의 값이 1만큼 증가된다. <code>a = a + 1</code>과 같은 표현식은 값을 증가시키기 위해 자주 사용한다. 하지만 이 표현식은 다음과 같이 더 간략하게 표현할 수 있다.</p>
+<pre><code class="language-python">&gt;&gt;&gt; a += 1
+</code></pre>
+<p><code>a += 1</code>이라는 표현식은 <code>a = a + 1</code>을 줄여서 표현한 것으로 완전히 동일한 기능을 한다. 여기에서 사용한 <code>+=</code> 와 같은 연산자를 <strong>복합 연산자</strong>라 부른다. </p>
+<p>만약 a의 값을 1만큼 감소 시키려면 다음과 같은 <code>-=</code> 복합 연산자를 사용할 수 있다.</p>
+<pre><code class="language-python">&gt;&gt;&gt; a = 1
+&gt;&gt;&gt; a -= 1  # a = a - 1 과 같음
+&gt;&gt;&gt; print(a)
+0
+</code></pre>
+<p>복합 연산자에는 다음과 같은 것들이 있다.</p>
+<pre><code class="language-plaintext">+=, -=, *=, /=, //=, %=, **=
+</code></pre>
+<p>이렇게 복합 연산자를 사용하면 코드를 더욱 간결하고 가독성 있게 작성할 수 있다.</p>
+</div>
+
+<div class="muted text-right" style="font-size: 0.9em;margin:10px 0;">
+    
+    마지막 편집일시 : 2024년 3월 7일 1:14 오후
+    
+</div>
+
+<!-- google adsense -->
+<!-- PC -->
+
+<!-- Mobile -->
+
+    
+        <div style="margin:20px 0;">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9470517771012578"
+     crossorigin="anonymous"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9470517771012578"
+     data-ad-slot="3685498833"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+        </div>
+    
+
+
+<!-- google adsense -->
+
+<!--
+
+-->
+
+<div class="clearfix">
+    <a href="javascript:show_comments();" class="label label-info">댓글 36</a>
+    <a href="#myModal" data-toggle="modal" title="피드백을 남겨주세요" class="label label-info">피드백</a>
+</div>
+
+<div class="user_comments" style="display:none">
+
+    <div class="comments" id="page_all_comments">
+        
+
+
+
+
+<div style="margin:15px 0 10px 0; font-size:0.75em;">
+    <a href="javascript:get_all_page_comments(12)">댓글 26개 더 보기...</a>
+</div>
+
+
+
+
+    <div class="comment comment_border_top">
+        <a name="comment_6902"></a>
+        <span style="white-space:pre-wrap;">다른 언어에선 본 적 없는 연산자네요. 보면서 감탄했어요. 파이썬이 왜 알고리즘 문제에서 많이 사용되는 언어인지 조금씩 알 것 같아요.</span>
+        <span style="font-size:12px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/8722">환오</a>,
+            
+            2019년 9월 9일 11:08 오후
+            
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_7676"></a>
+        <span style="white-space:pre-wrap;">몫과 나머지 연산 시 음수를 예제로 써주시면 이해가 더 깊이 될 것 같네요. -1%4 = 3, -7%4 = 1</span>
+        <span style="font-size:12px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/10428">Hanlim</a>,
+            
+            2020년 7월 16일 1:28 오후
+            
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_7679"></a>
+        <span style="white-space:pre-wrap;">@Hanlim님, 음수의 예제도 추가를 검토하도록 하겠습니다.</span>
+        <span style="font-size:12px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/3">박응용</a>,
+            
+            2020년 7월 17일 10:15 오전
+            
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_8597"></a>
+        <span style="white-space:pre-wrap;">사칙연산에서 &#x27;-&#x27;가 빠진 것 같습니다.</span>
+        <span style="font-size:12px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/11270">Eun-Cheon</a>,
+            
+            2020년 11월 17일 9:56 오전
+            
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_8872"></a>
+        <span style="white-space:pre-wrap;">@Eun-Cheon님, 사칙연산 예제에 빼기(-)도 추가 검토하겠습니다. 좋은의견 감사합니다.</span>
+        <span style="font-size:12px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/3">박응용</a>,
+            
+            2020년 12월 9일 12:17 오전
+            
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_9085"></a>
+        <span style="white-space:pre-wrap;">IDLE에서는 되지만, Visual Studio Code (1.52.1)에서는 에러가 나는 예제가 있습니다. (파이썬 3.9)
+PS C:\Users\tomai\OneDrive\문서\jocoding&gt; 7//5
+위치 줄:1 문자:3
++ 7//5
++   ~
+&#x27;/&#x27; 연산자 뒤에 값 식을 제공해야 합니다.
+    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : ExpectedValueExpression</span>
+        <span style="font-size:12px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/11588">일순</a>,
+            
+            2021년 1월 1일 6:31 오후
+            
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_10432"></a>
+        <span style="white-space:pre-wrap;">@종건님 3 % 7은 말씀대로 3을 7로 나누는 건데 몫이 0인건 알겠으나 나머지가 어떻게 생기는지 이해가 안갑니다....계산기로 해도 0.42857142857142857142857142857143 이렇게 나옵니다...ㅠㅠ 제가 수학에 무지하여 궁금하여 질문드려봅니다. 감사합니다.</span>
+        <span style="font-size:12px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/12434">Junho</a>,
+            
+            2021년 4월 13일 9:48 오전
+            
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_10434"></a>
+        <span style="white-space:pre-wrap;">@Junho님 정수의 몫과 나머지입니다.</span>
+        <span style="font-size:12px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/3">박응용</a>,
+            
+            2021년 4월 13일 11:31 오전
+            
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_13300"></a>
+        <span style="white-space:pre-wrap;">문의드립니다.
+&gt;&gt;&gt; a=2/3
+&gt;&gt;&gt; a
+0.6666666666666666
+&gt;&gt;&gt; &quot;%0.40f&quot;%a
+&#x27;0.6666666666666666296592325124947819858789&#x27;
+
+16자리까지는 정상적인숫자가 나오는데, 문자열자료형으로 소숫점자릿수를 늘리면 그 이후부터는 이상한 숫자가 나오네요.. 혹시 이거 왜그런건가요? 정상적으로 16자리 이상의 계산값을 보려면 어떻게 해야하나요?</span>
+        <span style="font-size:12px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/15951">김정규</a>,
+            
+            2022년 5월 14일 7:33 오후
+            
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_13302"></a>
+        <span style="white-space:pre-wrap;">@김정규님 이진수 기반의 파이썬 float 연산(부동소수점 연산)은 경우에 따라 오차가 발생합니다. 다음 문서도 참고해 주세요.
+<a href="https://wikidocs.net/106276" rel="nofollow">https://wikidocs.net/106276</a></span>
+        <span style="font-size:12px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/3">박응용</a>,
+            
+            2022년 5월 15일 1:49 오후
+            
+            
+            
+        </span>
+    </div>
+
+
+
+
+
+
+    </div>
+
+    
+    <a href="/loginForm" class="text-info" style="font-size:12px">※ 댓글 작성은 로그인이 필요합니다.</a>
+    <a href="#myModal" data-toggle="modal" style="font-size:12px">(또는 피드백을 이용해 주세요.)</a>
+    
+</div>
+
+<div class="page-prev-next">
+    
+<div class="clearfix">
+    <div class="pull-left">
+        <ul>
+            
+                <li><strong>이전글</strong> : <a href="javascript:page(11)">02장 파이썬 프로그래밍의 기초, 자료형</a></li>
+            
+            
+                <li><strong>다음글</strong> : <a href="javascript:page(13)">02-2 문자열 자료형</a></li>
+            
+        </ul>
+    </div>
+</div>
+
+
+</div>
+
+
+
+
+<a href="#" class="btn btn-primary back-to-top mobile-toc">
+    <span class="glyphicon glyphicon-list"></span>
+    목차보기
+</a>
+
+
+<!-- 책갈피 모달 -->
+<div class="modal fade" id="bookmarkModal" tabindex="-1" role="dialog" aria-labelledby="bookmarkModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="bookmarkModalLabel">책갈피</h4>
+            </div>
+            <div class="modal-body bookmark-body">
+                <!-- 여기에 동적 데이터가 로드됩니다 -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">추가</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+var is_mobile = "True";
+$(document).ready(function () {
+    if (is_mobile == "True") {
+        if($(window).width() >= 768) {
+            // show toc
+            localStorage.toc = "show";
+            $('#toc_on').prop('checked', true);
+            $(".toc-checker").removeClass("hide");
+            $(".toc-checker").show();
+
+        }else {
+            // hide toc
+            localStorage.toc = "hide";
+            $('#toc_off').prop('checked', true);
+            $(".toc-checker").hide();
+        }
+        $(".mobile-toc").click(function() {
+            $('#toc_on').prop('checked', true);
+            $(".toc-checker").removeClass("hide");
+            $(".toc-checker").show();
+        });
+    }
+
+    $('.bookmark_btn').click(function(){
+        var pathname = window.location.pathname;
+        $.ajax({
+            url: "/bookmark/",
+            method: "post",
+            data: {pathname: pathname},
+            success: function(data){
+                $('#bookmarkModal .modal-body').html(data);
+                $('#bookmarkModal').modal("show");
+            }
+        });
+    });
+
+    $('#bookmarkModal .btn-primary').click(function(){
+        var pathname = window.location.pathname;
+        $.ajax({
+            url: "/bookmark/add/",
+            method: "post",
+            data: {pathname: pathname},
+            success: function(data){
+                $('#bookmarkModal .modal-body').html(data);
+            }
+        });
+    });
+
+    $('#bookmarkModal .item-delete').click(function(){
+        
+        $.ajax({
+            url: "/bookmark/delete/",
+            method: "post",
+            data: {pathname: pathname},
+            success: function(data){
+                $('#bookmarkModal .modal-body').html(data);
+            }
+        });
+    });
+});
+function deleteBookmark(bookmarkId) {
+    if (confirm('정말 삭제하시겠습니까?')) {
+        $.ajax({
+            url: '/bookmark/delete/' + bookmarkId + '/',
+            type: 'POST',
+            data: {
+                'csrfmiddlewaretoken': 'K4mAgxisHqc2gL3R4n4kkHRAMcf2gfC3WjULMyzgd7v8uJYAUh4N0zkuLJEZQaUP'
+            },
+            success: function(response) {
+                $('#bookmarkModal .modal-body').html(response);
+            },
+            error: function(xhr, status, error) {
+                // 오류 처리
+                alert('삭제 실패: ' + error);
+            }
+        });
+    }
+}
+</script>
+    
+
+    </div>
+
+</div>
+
+<div style="display:none" class="prev_next_indicator">
+    
+    <a class="prev_icon" href="javascript:page(11)" role="button">
+        <span class="glyphicon glyphicon-chevron-left" style="font-size:2em;"></span>
+    </a>
+
+
+    <a class="next_icon" href="javascript:page(13)" role="button">
+        <span class="glyphicon glyphicon-chevron-right" style="font-size:2em;"></span>
+    </a>
+
+
+</div>
+
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 id="myModalLabel" class="modal-title">이 페이지에 대한 피드백을 남겨주세요</h3>
+            </div>
+            <div class="modal-body">
+                <form class="form" role="form">
+                    <input type="hidden" name="page_id" id="page_id" value="12" />
+                    <div class="form-group">
+                        <label class="control-label" for="email">답장받을 이메일 주소</label>
+                        <div class="">
+                            <input class="form-control" type="text" id="email" placeholder="Email" >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="feedback">하고 싶은 말</label>
+                        <div class="controls">
+                            <textarea class="form-control" id="feedback" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <p style="font-size:12px;">※ 피드백은 저자에게 e-메일로 전달됩니다.</p>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default" data-dismiss="modal">Close</button>
+                <button class="btn btn-primary" id="feedback_btn">전송하기</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="reportModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="reportModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 id="reportModalLabel" class="modal-title">댓글을 신고합니다.</h3>
+            </div>
+            <div class="modal-body">
+                <form class="form" role="form">
+                    <input type="hidden" name="comment_id" id="comment_id" />
+                    해당 댓글을 신고하시겠습니까? 댓글 신고는 다음과 같은 경우에 사용해주세요:
+                    <ol>
+                        <li>스팸 또는 광고성 내용이 포함된 경우</li>
+                        <li>욕설, 비방, 개인정보 유출 등 부적절한 내용이 포함된 경우</li>
+                        <li>저작권을 침해하는 내용이 포함된 경우</li>
+                    </ol>
+                    <div class="form-group">
+                        <label class="control-label" for="report">신고 사유를 입력해 주세요.</label>
+                        <div class="controls">
+                            <textarea class="form-control" id="report" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <p style="font-size:12px;">※ 신고하신 내용은 관리자에게 전달되며, 확인 후 적절한 조치가 이루어집니다. 신고는 익명으로 처리되며, 신고자의 정보는 공개되지 않습니다.</p>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default" data-dismiss="modal">Close</button>
+                <button class="btn btn-primary" id="report_btn">전송하기</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+
+
+<script>
+$(document).ready(function () {
+    $('pre code').each(function(i, e) {
+        hljs.highlightElement(e);
+        $(e).html($(e).html()
+            .replace(/\[\[MARK\]\]/g,'<mark class="add">')
+            .replace(/\[\[\/MARK\]\]/g, '</mark>')
+            .replace(/\[\[SMARK\]\]/g,'<mark class="del"><strike>')
+            .replace(/\[\[\/SMARK\]\]/g, '</strike></mark>')
+            .replace(/\[\[\/.*SMARK.*\]\]/g, '</strike></mark>')
+            .replace(/\[\[.*SMARK.*\]\]/g,'<mark class="del"><strike>')
+            .replace(/\[\[\/.*MARK.*\]\]/g, '</mark>')
+            .replace(/\[\[.*MARK.*\]\]/g,'<mark class="add">')
+        );
+    });
+
+    $("pre code").addClass("md-csc-wrap");
+    $(".hljs").prepend("<button class='md-csc-button btn btn-xs btn-default'><span class='copymsg'>Copy</span></button>");
+
+    $(".md-csc-button").click(function(){
+        let text = $(this).parent().text();
+        text = text.substring(4); // "Copy 문자열 이후부터.."
+        const textArea = document.createElement('textarea');
+        textArea.textContent = text;
+        document.body.append(textArea);
+        textArea.select();
+        document.execCommand("copy");
+        textArea.remove();
+
+        $(this).find(".copymsg").html("Copied!");
+        setTimeout(() => {
+            $(this).find(".copymsg").html("Copy");
+        }, 2000);
+    });
+});
+</script>
+
+</body>
+</html>

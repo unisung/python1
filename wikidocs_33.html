@@ -1,0 +1,3023 @@
+
+
+
+
+<!DOCTYPE HTML>
+<html lang="ko">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="mzkAy71X1qQFWihQN535LoiToXg34MUg9nuor7Og9E8" />
+    <meta name="naver-site-verification" content="a7b53e9ea172d3cefcc05eaba6ebf7180eca08fa" />
+    <meta name="description" content="온라인 책을 제작 공유하는 플랫폼 서비스">
+
+    
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="위키독스">
+<meta property="og:title" content="05-6 표준 라이브러리">
+<meta property="og:description" content="이제 파이썬 프로그래밍 능력을 높여 줄 더 큰 날개를 달아 보자. 전 세계의 파이썬 고수들이 만든 유용한 프로그램을 모아 놓은 것이 바로 **파이썬 표준 라이브러리**이다. ‘라…">
+<meta property="og:image" content="https://wikidocs.net/images/book/j2p_cover_4pwFNUD_Lirmdrv_U1UQjo8_e0LkdJf_RfBYr9e_HuNZjDQ_GPEKYKk_TiflQiw_bpi6gBP_c_5JHGBkJ.jpg">
+<meta property="og:url" content="https://wikidocs.net/33">
+
+
+    <link rel="shortcut icon" type="image/x-icon" href="/static/img/favicon.ico">
+    <link rel="canonical" href="https://wikidocs.net/book/1">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap">
+
+    <title>05-6 표준 라이브러리 - 점프 투 파이썬</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    -->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    
+<style>
+a.wiki_link {
+    color: #8B0000;
+    text-decoration: none;
+}
+a.wiki_link:hover {
+    text-decoration: underline;
+}
+.popover{
+    max-width: 500px; /* Max Width of the popover (depending on the container!) */
+}
+</style>
+
+    <link type="text/css" href="/static/book/css/style_stack.css?v=6" rel="stylesheet"  media="screen" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/static/book/js/utils.js"></script>
+    <script type="text/javascript" src="/static/book/js/base.js?v=1"></script>
+    <script type="text/javascript">
+    function recommend_book(book_id) {
+        var msg = [];
+        msg.push('<div class="alert alert-info">');
+        msg.push('<p><strong>책을 추천합니다.</strong></p>');
+        msg.push('정말로 추천하시겠습니까?</p>');
+        msg.push('</div>');
+        msg.push('<span class="muted">※ 추천취소는 불가능합니다.</span>');
+
+        apprise(msg.join(''), {'verify':true}, function(r) {
+            if(r) {
+                location.href = "/book/recommend/"+book_id;
+            }
+        });
+        return;
+    }
+    </script>
+    
+    
+
+
+<link type="text/css" href="/static/apprise/apprise.min.css" rel="stylesheet"  />
+<link type="text/css" href="/static/book/css/markdown_stack.css?v=4" rel="stylesheet" />
+<link type="text/css" href="/static/treeview/bootstrap-treeview.min.css" rel="stylesheet" />
+<link type="text/css" href="/static/book/css/copycode.css" rel="stylesheet" />
+
+<!--  -->
+
+<style>
+.wp-content p {
+    margin: 5px 0;
+}
+a.wiki_title {
+    color: #8B0000;
+    text-decoration: none;
+    font-size: 16px;
+}
+a.inner_link {
+    color: #8B0000;
+    text-decoration: none;
+}
+a.wiki_title:hover, a.inner_link:hover {
+    text-decoration: underline;
+}
+#search-results {
+    width: 100%;
+    cursor: pointer;
+    padding:0;
+    margin:0;
+    background-color: #f2f2f2;
+    border-top:none;
+    border-radius: 0; /* 모서리의 radius를 0으로 설정 */
+    font-weight:bold;
+}
+#search-results li {
+    margin: 0;
+    padding: 5px 30px;
+}
+.result-item {
+    white-space: normal;
+    padding: 0 15px;
+    color:#000;
+}
+
+.dropdown-menu .active {
+    background-color: #000;
+    outline: none;
+    color:#fff;
+}
+</style>
+
+<script type="text/javascript" src="/static/apprise/apprise-1.5.min.js"></script>
+<script type="text/javascript" src="/static/scroll/jquery.nicescroll.js"></script>
+<!-- <script type="text/javascript" src="/static/book/js/page.js?v=20210601_01"></script> -->
+<link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+
+<!-- 수식입력 mathjax -->
+<script>
+window.MathJax = {
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore',
+    processHtmlClass: 'tex2jax_process'
+  },
+  loader: {load: ['[tex]/physics', '[tex]/braket']},
+  tex: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    packages: {'[+]': ['physics', 'braket']}
+  }
+};
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- 수식입력 mathjax -->
+
+<script>
+$(document).ready(function () {
+//    $("pre").addClass("prettyprint");
+//    prettyPrint();
+
+    $("#show_toc_btn").click(function () {
+        $(".toc").removeClass("hide");
+        $(".toc").show();
+        $("#show_toc_btn").hide();
+    });
+
+    $("#feedback_btn").click(function () {
+
+        var page_id = $("#page_id").val();
+        var email = $("#email").val();
+        var feedback = $("#feedback").val();
+
+        if (!email) {
+            apprise('답장받을 이메일을 입력하세요.', {}, function () {
+                $("#email").focus();
+            });
+            return;
+        }
+
+        if (!validateEmail(email)) {
+            apprise('이메일을 정확하게 입력 해 주세요.', {}, function () {
+                $("#email").focus();
+            });
+            return;
+        }
+
+        if (!feedback) {
+            apprise('피드백을 입력하세요.', {}, function () {
+                $("#feedback").focus();
+            });
+            return;
+        }
+
+        $.post("/feedback", {
+            "page_id": page_id,
+            "email": email,
+            "feedback": feedback
+        }, function (data) {
+            apprise('피드백을 남겨주셔서 감사합니다.', {}, function () {
+                $('#myModal').modal('hide');
+            });
+        }, "html");
+
+    });
+
+    $("#report_btn").click(function () {
+        var comment_id = $("#comment_id").val();
+        var report = $("#report").val();
+
+        if (!report) {
+            apprise('신고사유를 입력하세요.', {}, function () {
+                $("#report").focus();
+            });
+            return;
+        }
+
+        $.post("/page/comment/report", {
+            "comment_id": comment_id,
+            "report": report
+        }, function (result) {
+            if(result.success) {
+                apprise('신고가 접수되었습니다. 검토까지는 최대 24시간 소요됩니다.', {}, function () {
+                    $('#reportModal').modal('hide');
+                });
+            }else {
+                $('#reportModal').modal('hide');
+                alert(result.message);
+            }
+            
+        }, "json");
+
+    });
+
+    $("body").on('click', "#comment_btn", function () {
+        var content = $("#content").val();
+        if (!content) {
+            apprise('댓글을 입력해 주세요', {verify: false}, function (r) {
+                $("#content").focus();
+            });
+            return false;
+        }
+
+        $.post("/page/comment/save", {
+            "page_id": $("#page_id").val(),
+            "content": content
+        }, function (result) {
+            if (result.success) {
+                get_page_comments(result.page_id);
+            }else {
+                alert(result.message);
+            }
+        }, "json");
+    });
+
+    $('a[href="#top"]').click(function () {
+        $('html,body').animate({ scrollTop: $("body").offset().top},
+            {duration: 'normal', easing: 'swing'});
+        return false;
+    });
+
+    var hash = window.location.hash;
+    if(hash.indexOf("#comment") != -1) {
+        show_comments();
+    }
+
+    // 외부 링크는 새창으로 열도록 수정.
+    $('a').each(function() {
+        var a = new RegExp('/' + window.location.host + '/');
+        try {
+            if(this.href && !a.test(this.href) && this.href.indexOf('wikidocs.net') === -1 && this.href.startsWith('http')) {
+                $(this).click(function(event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    window.open(this.href, '_blank');
+                });
+            }
+        }catch(e) {
+        }
+    });
+
+    // popover
+    var is_mobile = "True";
+    let _trigger = 'click';  // focus(다른 곳 클릭시 팝업 닫힘), click 
+    let _hide = 0;  // focus일 때는 200이 적당
+    if (is_mobile == "True") {
+        _trigger = 'click';
+        _hide = 0;
+    }
+    
+    $('.wiki_link').on('click', function(event) {
+        var el = $(this);
+        
+        // disable this event after first binding 
+        el.off(event);
+
+        let _title = el.data('title');
+        _title = "<a class='wiki_title' href='/wiki/"+_title+"' target='_wiki'>" +_title + "</a>"+
+                '<button style="margin-left:10px;" type="button" id="close" class="close">&times;</button>';
+        
+        // add initial popovers with LOADING text
+        el.popover({
+            title: _title,
+            content: "loading...", // maybe some loading animation like <img src='loading.gif />
+            html: true,
+            placement: "bottom",
+            container: 'body',
+            trigger: _trigger,
+            delay: {"show": 0, "hide": _hide}
+        }).on('shown.bs.popover', function (eventShown) {
+            var $popup = $('#' + $(eventShown.target).attr('aria-describedby'));
+            $popup.find('button.close, a.wiki_title, a.inner_link').click(function (e) {
+                el.trigger('click');
+            });
+        });
+
+        // show this LOADING popover
+        // el.popover('show');
+
+        // requesting data from unsing url from data-poload attribute
+        $.get(el.data('wiki'), function (d) {
+            let $tempDiv = $('<div>').html(d);
+            $tempDiv.find('a').attr('target', '_blank');
+            d = $tempDiv.html();
+
+            // set new content to popover
+            el.data('bs.popover').options.content = d;
+
+            // reshow popover with new content
+            // el.popover('show');
+            el.trigger('click');
+        });
+    });
+});
+
+$(window).load(function () {
+    if (!TOC_HEIGHT) {
+//        init_toc();
+    }
+
+    resizeMenu();
+});
+
+function resizeMenu() {
+    var wh = $(window).height() - 220;
+    var ph = get_height(".page");
+    var h = Math.max(wh, ph);
+    $(".scrollable-menu").css("max-height", h+"px");
+}
+
+function touch_toc() {
+    if ($(".page img").length == 0) {
+        init_toc();
+    }
+}
+
+var TOC_HEIGHT;
+function init_toc() {
+    var selected_toc_li_top = $(".selected_toc_li").offset().top;
+    var page_height = get_height(".page");
+    var toc_height = get_height(".toc-area");
+    TOC_HEIGHT = toc_height;
+
+//    console.log("page_height:"+page_height);
+
+    if (toc_height >= 480) {
+        if (page_height - 145 <= 480) {
+            $(".toc-area").css("height", (page_height - 145) + "px");
+            $(".toc-open").show();
+            $(".toc-area").niceScroll({"cursorcolor": "#888"});
+            $(".toc-area").scrollTop(selected_toc_li_top - 200);
+        } else if (toc_height > 480) {
+            $(".toc-area").css("height", "480px");
+            $(".toc-open").show();
+            $(".toc-area").niceScroll({"cursorcolor": "#888"});
+            $(".toc-area").scrollTop(selected_toc_li_top - 200);
+        }
+    }
+
+    if (page_height > 480 + 300) {
+        $(".toc-ads").show();
+    }
+}
+function open_toc() {
+    $(".toc-area").css("overflow-y", "visible");
+    $(".toc-area").css("height", TOC_HEIGHT + "px");
+    $(".toc-open").hide();
+}
+function get_height(element) {
+    var _height = $(element).css("height");
+    return parseInt(_height.split("px")[0]);
+}
+
+function remove_comment(comment_id) {
+    apprise('정말로 삭제하시겠습니까?', {verify: true}, function (r) {
+        if (r) {
+            $.post("/page/comment/remove", {
+                "comment_id": comment_id
+            }, function (result) {
+                if (result.success) {
+                    get_page_comments(result.page_id);
+                }else {
+                    alert(result.message);
+                }
+                // $(".comments").html(data);
+            }, "json");
+        }
+    });
+}
+
+function reply_comment(comment_name) {
+    $(".user_comments #content").val("@"+comment_name+"님 ");
+    $(".user_comments #content").focus();
+}
+
+function show_comments() {
+    $(".user_comments").toggle();
+}
+
+function show_book_comments() {
+    $(".pages").css("display", "none");
+    $(".comments").toggle();
+}
+
+function show_book_pages() {
+    $(".comments").css("display", "none");
+    $(".pages").toggle();
+
+}
+
+function get_all_page_comments(page_id) {
+    $.ajax({
+        type: "POST",
+        url: "/page/comment/all",
+        data: {'page_id': page_id},
+        dataType: "html",
+        success: function(data) {
+            $("#page_all_comments").html(data);
+        }
+    });
+}  
+
+function get_page_comments(page_id) {
+    $.ajax({
+        type: "POST",
+        url: "/page/comment/get",
+        data: {'page_id': page_id},
+        dataType: "html",
+        success: function(data) {
+            $(".comments").html(data);
+            $("#content").val("");
+        }
+    });
+}
+
+function report_modal(comment_id) {
+    // console.log(comment_id);
+    $("#comment_id").val(comment_id);
+    $('#reportModal').modal('show')
+}
+</script>
+
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-2686629-3']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6N5MJRGLWG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-6N5MJRGLWG');
+    </script>
+</head>
+<body>
+
+
+    <!-- PC -->
+
+
+
+
+
+
+
+
+<div class="container" style="padding-bottom:50px;">
+
+<div class="content row tex2jax_ignore" style="margin-top:0px;">
+    <div class="col-sm-3">
+        
+<div class="row">
+    <div class="col-sm-3 sidebar" style="padding:0;margin:0;overflow-x: hidden;">
+        
+        <div class="row" style="display:none;">
+            <div class="col-xs-12" style="border-bottom:solid 1px #ddd;">
+                <button id="toggle_toc_btn" class="btn btn-sm btn-default" style="margin:10px;">목차보기</button>
+                <label for="toc_on" class="small">
+                    <input type="radio" id="toc_on" name="toc_on_off" value="show"> Show
+                </label>
+                <label for="toc_off" class="small">
+                    <input type="radio" id="toc_off" name="toc_on_off" value="hide"> Hide
+                </label>
+            </div>
+        </div>
+        
+
+        <div class="toc toc-checker">
+            <div class="row">
+                <div class="col-xs-12" style="padding:0;">
+                    <div class="row clearfix" style="margin:0;padding:0;border-bottom:solid 1px #ccc;">
+                        <div class="pull-left" style="width:75%;">
+                            <input type="text" style="margin-left:15px;" id="kw" name="kw" class="input-search" placeholder="검색어를 입력하세요." autocomplete="off">
+                            <ul id="search-results" class="dropdown-menu" aria-labelledby="kw"></ul>
+                        </div>
+                        <div class="pull-right">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="list-group list-group-toc" style="margin:0;">
+                <a class="list-group-item " href="/book/1" style="margin:0;">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;" title="점프 투 파이썬">
+                        
+                            <i class="glyphicon glyphicon-book"></i>
+                        
+                        <strong>점프 투 파이썬</strong>
+                    </span>
+                </a>
+
+                
+                <a href="javascript:page(2)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="00장 들어가기 전에">
+                        <span style="padding-left:0px">
+                        
+                        00장 들어가기 전에
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(4319)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="00-1 머리말">
+                        <span style="padding-left:20px">
+                        
+                        00-1 머리말
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(4320)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="00-2 저자소개">
+                        <span style="padding-left:20px">
+                        
+                        00-2 저자소개
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(202337)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="00-3 동영상 강의">
+                        <span style="padding-left:20px">
+                        
+                        00-3 동영상 강의
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(202412)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="00-4 소스 코드">
+                        <span style="padding-left:20px">
+                        
+                        00-4 소스 코드
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(4321)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="00-5 책 구입 안내">
+                        <span style="padding-left:20px">
+                        
+                        00-5 책 구입 안내
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(742)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="00-6 주요변경이력">
+                        <span style="padding-left:20px">
+                        
+                        00-6 주요변경이력
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(5)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="01장 파이썬이란 무엇인가?">
+                        <span style="padding-left:0px">
+                        
+                        01장 파이썬이란 무엇인가?
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(4307)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="01-1 파이썬이란?">
+                        <span style="padding-left:20px">
+                        
+                        01-1 파이썬이란?
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(6)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="01-2 파이썬의 특징">
+                        <span style="padding-left:20px">
+                        
+                        01-2 파이썬의 특징
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(7)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="01-3 파이썬으로 무엇을 할 수 있을까?">
+                        <span style="padding-left:20px">
+                        
+                        01-3 파이썬으로 무엇을 할 수 있을까?
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(8)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="01-4 파이썬 설치하기">
+                        <span style="padding-left:20px">
+                        
+                        01-4 파이썬 설치하기
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(9)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="01-5 파이썬 둘러보기">
+                        <span style="padding-left:20px">
+                        
+                        01-5 파이썬 둘러보기
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(17684)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="01-6 파이썬과 에디터">
+                        <span style="padding-left:20px">
+                        
+                        01-6 파이썬과 에디터
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(11)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="02장 파이썬 프로그래밍의 기초, 자료형">
+                        <span style="padding-left:0px">
+                        
+                        02장 파이썬 프로그래밍의 기초, 자료형
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(12)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="02-1 숫자형">
+                        <span style="padding-left:20px">
+                        
+                        02-1 숫자형
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(13)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="02-2 문자열 자료형">
+                        <span style="padding-left:20px">
+                        
+                        02-2 문자열 자료형
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(14)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="02-3 리스트 자료형">
+                        <span style="padding-left:20px">
+                        
+                        02-3 리스트 자료형
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(15)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="02-4 튜플 자료형">
+                        <span style="padding-left:20px">
+                        
+                        02-4 튜플 자료형
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(16)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="02-5 딕셔너리 자료형">
+                        <span style="padding-left:20px">
+                        
+                        02-5 딕셔너리 자료형
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(1015)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="02-6 집합 자료형">
+                        <span style="padding-left:20px">
+                        
+                        02-6 집합 자료형
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(17)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="02-7 불 자료형">
+                        <span style="padding-left:20px">
+                        
+                        02-7 불 자료형
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(18)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="02-8 자료형의 값을 저장하는 공간, 변수">
+                        <span style="padding-left:20px">
+                        
+                        02-8 자료형의 값을 저장하는 공간, 변수
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(180351)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="02장 되새김 문제">
+                        <span style="padding-left:20px">
+                        
+                        02장 되새김 문제
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(19)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="03장 프로그램의 구조를 쌓는다! 제어문">
+                        <span style="padding-left:0px">
+                        
+                        03장 프로그램의 구조를 쌓는다! 제어문
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(20)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="03-1 if문">
+                        <span style="padding-left:20px">
+                        
+                        03-1 if문
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(21)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="03-2 while문">
+                        <span style="padding-left:20px">
+                        
+                        03-2 while문
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(22)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="03-3 for문">
+                        <span style="padding-left:20px">
+                        
+                        03-3 for문
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(180354)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="03장 되새김 문제">
+                        <span style="padding-left:20px">
+                        
+                        03장 되새김 문제
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(23)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="04장 파이썬의 입출력">
+                        <span style="padding-left:0px">
+                        
+                        04장 파이썬의 입출력
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(24)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="04-1 함수">
+                        <span style="padding-left:20px">
+                        
+                        04-1 함수
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(25)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="04-2 사용자 입출력">
+                        <span style="padding-left:20px">
+                        
+                        04-2 사용자 입출력
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(26)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="04-3 파일 읽고 쓰기">
+                        <span style="padding-left:20px">
+                        
+                        04-3 파일 읽고 쓰기
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(180507)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="04-4 프로그램의 입출력">
+                        <span style="padding-left:20px">
+                        
+                        04-4 프로그램의 입출력
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(180356)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="04장 되새김 문제">
+                        <span style="padding-left:20px">
+                        
+                        04장 되새김 문제
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(27)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="05장 파이썬 날개 달기">
+                        <span style="padding-left:0px">
+                        
+                        05장 파이썬 날개 달기
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(28)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="05-1 클래스">
+                        <span style="padding-left:20px">
+                        
+                        05-1 클래스
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(29)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="05-2 모듈">
+                        <span style="padding-left:20px">
+                        
+                        05-2 모듈
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(1418)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="05-3 패키지">
+                        <span style="padding-left:20px">
+                        
+                        05-3 패키지
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(30)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="05-4 예외 처리">
+                        <span style="padding-left:20px">
+                        
+                        05-4 예외 처리
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(32)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="05-5 내장 함수">
+                        <span style="padding-left:20px">
+                        
+                        05-5 내장 함수
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(33)" class="list-group-item active">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="05-6 표준 라이브러리">
+                        <span style="padding-left:20px">
+                        
+                        05-6 표준 라이브러리
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(180538)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="05-7 외부 라이브러리">
+                        <span style="padding-left:20px">
+                        
+                        05-7 외부 라이브러리
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(180359)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="05장 되새김 문제">
+                        <span style="padding-left:20px">
+                        
+                        05장 되새김 문제
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(34)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="06장 파이썬 프로그래밍, 어떻게 시작해야 할까?">
+                        <span style="padding-left:0px">
+                        
+                        06장 파이썬 프로그래밍, 어떻게 시작해야 할까?
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(35)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="06-1 내가 프로그램을 만들 수 있을까?">
+                        <span style="padding-left:20px">
+                        
+                        06-1 내가 프로그램을 만들 수 있을까?
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(40)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="06-2 3과 5의 배수를 모두 더하기">
+                        <span style="padding-left:20px">
+                        
+                        06-2 3과 5의 배수를 모두 더하기
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(38)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="06-3 게시판 페이징하기">
+                        <span style="padding-left:20px">
+                        
+                        06-3 게시판 페이징하기
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(36)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="06-4 간단한 메모장 만들기">
+                        <span style="padding-left:20px">
+                        
+                        06-4 간단한 메모장 만들기
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(37)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="06-5 탭 문자를 공백 문자 4개로 바꾸기">
+                        <span style="padding-left:20px">
+                        
+                        06-5 탭 문자를 공백 문자 4개로 바꾸기
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(39)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="06-6 하위 디렉터리 검색하기">
+                        <span style="padding-left:20px">
+                        
+                        06-6 하위 디렉터리 검색하기
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(184208)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="07장 파이썬 날아오르기">
+                        <span style="padding-left:0px">
+                        
+                        07장 파이썬 날아오르기
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(184209)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="07-1 파이썬과 유니코드">
+                        <span style="padding-left:20px">
+                        
+                        07-1 파이썬과 유니코드
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(184210)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="07-2 클로저와 데코레이터">
+                        <span style="padding-left:20px">
+                        
+                        07-2 클로저와 데코레이터
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(184211)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="07-3 이터레이터와 제너레이터">
+                        <span style="padding-left:20px">
+                        
+                        07-3 이터레이터와 제너레이터
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(184212)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="07-4 파이썬 타입 어노테이션">
+                        <span style="padding-left:20px">
+                        
+                        07-4 파이썬 타입 어노테이션
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(1669)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="08장 정규표현식">
+                        <span style="padding-left:0px">
+                        
+                        08장 정규표현식
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(1642)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="08-1 정규 표현식 살펴보기">
+                        <span style="padding-left:20px">
+                        
+                        08-1 정규 표현식 살펴보기
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(4308)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="08-2 정규 표현식 시작하기">
+                        <span style="padding-left:20px">
+                        
+                        08-2 정규 표현식 시작하기
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(4309)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="08-3 강력한 정규 표현식의 세계로">
+                        <span style="padding-left:20px">
+                        
+                        08-3 강력한 정규 표현식의 세계로
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(202338)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="09장 부록">
+                        <span style="padding-left:0px">
+                        
+                        09장 부록
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(180361)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="09-1 파이썬 코딩 면허 시험 20제">
+                        <span style="padding-left:20px">
+                        
+                        09-1 파이썬 코딩 면허 시험 20제
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(193066)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="09-2 챗GPT와 함께 파이썬 공부하기">
+                        <span style="padding-left:20px">
+                        
+                        09-2 챗GPT와 함께 파이썬 공부하기
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(180362)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="10장 정답 및 풀이">
+                        <span style="padding-left:0px">
+                        
+                        10장 정답 및 풀이
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(78308)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="마치며.">
+                        <span style="padding-left:0px">
+                        
+                        마치며.
+                        </span>
+                    </span>
+                </a>
+                
+            </div>
+        </div>
+        
+        <input type="hidden" name="request_mobile" id="request_mobile" value="0" />
+    </div>
+</div>
+
+<script>
+function myTrim(x) {
+    return x.replace(/^\s+|\s+$/gm,'');
+}
+
+function search_json() {
+    var kw = myTrim($("#kw").val());
+    if(!kw) {
+        return;
+    }
+
+    location.href = "/book/search/result/1?keyword="+kw;
+}
+
+$(document).ready(function () {
+    $(".book-search").on("click", function() {
+        $("#search_form").submit();
+    });
+
+    $("#mobile_search_btn").on("click", function() {
+        search_json();
+    });
+
+    $(".home").on("click", function() {
+        location.href = "/";
+    });
+
+    if (typeof(Storage) !== "undefined") {
+        if(localStorage.sidebar == "hidden") {
+            menuToggle();
+        }else {
+            $(".sidebar").show();
+            $(".toc-header").show();
+        }
+    }else {
+        $(".sidebar").show();
+        $(".toc-header").show();
+    }
+
+    $(".toc").css("display", "block");
+    if (typeof(Storage) !== "undefined") {
+        $(".sidebar").scrollTop(localStorage.sp);
+    }
+
+    $(".sidebar").css("overflow-y", "auto");
+
+    $(".toc_item").on("click", function() {
+        var page_id = $(this).attr("page_id");
+        // $(".selected_toc").removeClass("selected_toc");
+        // $(this).addClass("selected_toc");
+        page(page_id);
+
+    });
+
+    $(".menu-toggle").on("click", function() {
+        menuToggle();
+
+        if (typeof(Storage) !== "undefined") {
+            if(localStorage.sidebar == "hidden") {
+                localStorage.sidebar = "show";
+            }else {
+                localStorage.sidebar = "hidden";
+            }
+        }
+    });
+
+    
+    $("input[name=toc_on_off]").on("click", function() {
+        var result = $(this).val();
+        if (typeof(Storage) !== "undefined") {
+            localStorage.toc = result;
+        }
+    });
+    if (typeof(Storage) !== "undefined") {
+        if (localStorage.getItem("toc") === null) {  // init value
+            localStorage.toc = "hide";
+        }
+        if(localStorage.toc == "hide") {
+            $('#toc_off').prop('checked', true);
+            $(".toc-checker").hide();
+        }else {
+            $('#toc_on').prop('checked', true);
+            $(".toc-checker").removeClass("hide");
+            $(".toc-checker").show();
+        }
+    }
+    
+
+    $("#load_content").show();
+});
+
+
+function menuToggle(no_sidebar) {
+    if(!no_sidebar) {
+        $(".sidebar").toggle();
+        $(".toc-header").toggle();
+    }
+    $("#load_content").toggleClass("col-sm-offset-3");
+    $("#load_content").toggleClass("col-sm-9");
+    $("#load_content").toggleClass("col-sm-12");
+    $("#load_content").toggleClass("sidebar-padding");
+    $(".prev_next_indicator").toggle();
+    $(".menu-group").toggle();
+}
+
+function page(no) {
+    var scrollpos = $(".sidebar").scrollTop();
+    if (typeof(Storage) !== "undefined") {
+        localStorage.sp = scrollpos;
+    }
+
+    location.href = "/"+no;
+    return false;
+
+    $(".selected_toc").removeClass("selected_toc");
+    $(".toc_item").each(function() {
+        var page_id = $(this).attr("page_id");
+        if(page_id == no) {
+            $(this).addClass("selected_toc");
+        }
+    });
+
+    var url = "/load/"+no;
+    $("#load_content").load(url, function(responseTxt, statusTxt, xhr){
+        if(statusTxt == "success") {
+            // alert("External content loaded successfully!");
+            $("#load_content").scrollTop(0);
+            window.history.pushState("object or string", "05-6 표준 라이브러리", "/"+no);
+        }
+        if(statusTxt == "error") {
+            alert("Error: " + xhr.status + ": " + xhr.statusText);
+        }
+    });
+
+}
+
+
+/* search keyword */
+$(document).ready(function() {
+    const $searchInput = $('#kw');
+    const $searchResults = $('#search-results');
+
+    const ajax_search = function(event) {
+        var query = $searchInput.val().trim();
+        if (query.length >= 1) {  // 예시로 2글자 이상 입력될 때 검색을 시작합니다.
+            $.ajax({
+                url: '/book/search.json/',  // 검색 요청을 처리할 서버의 URL
+                data: {
+                    'kw': query,
+                    'book_id': '1',
+                },
+                dataType: 'json',
+                success: function(data) {
+                    $searchResults.empty();
+                    if (data.results.length > 0) {
+                        data.results.forEach(function(item) {
+                            $searchResults.append('<li class="dropdown-item result-item" data-url="/'+item.id+'">' + item.subject + '</li>');
+                        });
+                        $searchResults.show();
+                    } else {
+                        $searchResults.hide();
+                    }
+                }
+            });
+        } else {
+            $searchResults.empty().hide();
+        }
+    }
+
+    $searchInput.on('keydown', function(event) {
+        if (event.key === 'ArrowDown') {
+            event.preventDefault();
+            const $results = $searchResults.find('li');
+            if ($results.length > 0) {
+                $results.first().addClass('active').attr('tabindex', -1).focus();
+            }
+        }else if(event.key == 'Escape') {
+            $searchResults.empty().hide();
+            $searchInput.val('');
+            $searchInput.attr('tabindex', -1).focus();
+        }
+    });
+
+    $searchInput.on('keyup', function(event) {
+        if (event.key === 'Enter') {
+            let val = $(this).val();
+            if (val.length >= 1) {
+                window.location.href = "/book/search/result/1?find_kw="+val+"&exact_match=1&page=1";
+            }
+        }else if(event.key == 'Escape') {
+            $searchResults.empty().hide();
+            $searchInput.val('');
+            $searchInput.attr('tabindex', -1).focus();
+        }else if (!event.key.startsWith('Arrow')) {
+            ajax_search(event);
+        }
+    });
+
+    $searchResults.on('keydown', 'li', function(event) {
+        const $results = $searchResults.find('li');
+        const currentIndex = $results.index(this);
+        if (event.key === 'ArrowDown') {
+            
+            event.preventDefault();
+            const nextIndex = (currentIndex + 1) % $results.length;
+            
+            $results.removeClass('active');
+            $results.eq(nextIndex).addClass('active').attr('tabindex', -1).focus();            
+        } else if (event.key === 'ArrowUp') {
+            event.preventDefault();
+            $results.removeClass('active');
+            if(currentIndex == 0) {
+                $searchInput.attr('tabindex', -1).focus();
+            }else {
+                const prevIndex = (currentIndex - 1 + $results.length) % $results.length;
+                $results.eq(prevIndex).addClass('active').attr('tabindex', -1).focus();
+            }
+        }else if(event.key == 'Enter') {
+            window.location.href = $(this).data('url');
+        }else if(event.key == 'Escape') {
+            $searchResults.empty().hide();
+            $searchInput.val('');
+            $searchInput.attr('tabindex', -1).focus();
+        }
+    });
+
+    $(document).on('click', function(event) {
+        if(event.target !== $searchResults[0]) {
+            $searchResults.empty().hide();
+        }
+    });
+
+    $(document).on('click', ".result-item", function(event) {
+        window.location.href = $(this).data('url');
+    });
+
+    $(".find-btn").on('click', function(event) {
+        let val = $searchInput.val();
+        // if (val.length >= 1) {
+            window.location.href = "/book/search/result/1?find_kw="+val+"&exact_match=1&page=1";
+        // }
+    })
+});
+
+
+</script>
+
+
+
+    </div>
+
+    
+    <div class="page col-sm-offset-3 col-sm-9" id="load_content" style="display:none;margin-top:0px;">
+        <!-- <div style="margin: 50px 0; padding: 20px; border: 1px solid #ddd; border-radius: 10px; background-color: #f9f9f9;">
+    <div style="font-size: 24px; font-weight: bold; margin-bottom: 20px;">[중요] 서버 점검 공지</div>
+    <div style="font-size: 16px; line-height: 1.6;">
+        <p>안녕하세요, 고객 여러분,</p>
+        <p>저희는 시스템의 안정성을 향상시키기 위해 예정된 서버 점검을 진행하게 되었습니다. 이로 인해 일시적으로 서비스 이용에 불편을 드릴 수 있음을 알려드립니다.</p>
+        <p><strong>- 점검 일시: 2023년 6월 17일 (토요일), 23시부터 24시까지 (1시간 동안)</strong></p>
+        <p>점검 동안에는 모든 서비스가 일시적으로 중단됩니다. 점검이 완료된 후에는 정상적으로 서비스를 이용하실 수 있습니다.</p>
+        <p>점검 시간 동안에는 서비스 이용이 불가능하오니, 이 점 참고하시어 불편함이 없으시길 바랍니다.</p>
+        <p>저희는 고객 여러분께 더 나은 서비스를 제공하기 위해 노력하고 있습니다. 이해와 협조에 감사드립니다.</p>
+        <p>감사합니다.</p>
+    </div>
+</div>
+ -->
+        
+
+
+
+
+
+
+
+
+<div class="btn-group pull-right menu-group" role="group">
+    <button class="btn btn-xs btn-default menu_link menu-toggle">
+        <i class="glyphicon glyphicon-menu-hamburger" title="메뉴"></i>
+    </button>
+</div>
+<div class="menu-wikidocs">
+</div>
+
+
+
+
+<div class="clearfix page-depth">
+    <ol class="breadcrumb pull-left">
+        <li><small><a href="/book/1"><i class="glyphicon glyphicon-book"></i> <strong>점프 투 파이썬</strong></a></small></li>
+        
+        <li><small><a href="/27">05장 파이썬 날개 달기</a></small></li>
+        
+        <li><small><a href="/33">05-6 표준 라이브러리</a></small></li>
+        
+    </ol>
+    
+    <ol class="breadcrumb pull-right">
+        
+
+        
+        <li>
+            <a href="/"><small class="logo"><i class="glyphicon glyphicon-home"></i> 위키독스</small></a>
+        </li>
+    </ol>
+    
+</div>
+
+
+<h1 class="page-subject">
+    05-6 표준 라이브러리
+    
+</h1>
+
+<!-- google adsense -->
+<!-- PC -->
+
+
+<!-- Mobile -->
+
+    
+        <div style="margin:20px 0;">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9470517771012578"
+     crossorigin="anonymous"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9470517771012578"
+     data-ad-slot="3685498833"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+        </div>
+    
+
+
+<!-- google adsense -->
+
+<div class="page-content tex2jax_process">
+    
+    <p>이제 파이썬 프로그래밍 능력을 높여 줄 더 큰 날개를 달아 보자. 전 세계의 파이썬 고수들이 만든 유용한 프로그램을 모아 놓은 것이 바로 <strong>파이썬 표준 라이브러리</strong>이다. ‘라이브러리’는 ‘도서관’이라는 뜻 그대로 원하는 정보를 찾아보는 곳이다. 모든 라이브러리를 다 알 필요는 없고 어떤 일을 할 때 어떤 라이브러리를 사용해야 한다는 정도만 알면 된다. 이를 위해 어떤 라이브러리가 존재하고 어떻게 사용하는지 알아야 한다. 자주 사용되고 꼭 알아 두면 좋은 라이브러리를 중심으로 하나씩 살펴보자.</p>
+<blockquote>
+<ul>
+<li>파이썬 표준 라이브러리는 파이썬을 설치할 때 자동으로 컴퓨터에 설치된다.</li>
+<li>sys, re 모듈은 파이썬의 중요한 표준 라이브러리이다. sys 모듈은 04-4, re 모듈은 08장 전체에 걸쳐 다루고 있으므로 이곳에서는 설명하지 않는다.</li>
+</ul>
+</blockquote>
+<div class="toc">
+<ul>
+<li><a href="#datetimedate">datetime.date</a></li>
+<li><a href="#time">time</a><ul>
+<li><a href="#timetime">time.time</a></li>
+<li><a href="#timelocaltime">time.localtime</a></li>
+<li><a href="#timeasctime">time.asctime</a></li>
+<li><a href="#timectime">time.ctime</a></li>
+<li><a href="#timestrftime">time.strftime</a></li>
+<li><a href="#timesleep">time.sleep</a></li>
+</ul>
+</li>
+<li><a href="#mathgcd">math.gcd</a></li>
+<li><a href="#mathlcm">math.lcm</a></li>
+<li><a href="#random">random</a></li>
+<li><a href="#itertoolszip_longest">itertools.zip_longest</a></li>
+<li><a href="#itertoolspermutation">itertools.permutation</a></li>
+<li><a href="#itertoolscombination">itertools.combination</a></li>
+<li><a href="#functoolsreduce">functools.reduce</a></li>
+<li><a href="#operatoritemgetter">operator.itemgetter</a></li>
+<li><a href="#shutil">shutil</a></li>
+<li><a href="#glob">glob</a><ul>
+<li><a href="#-globpathname">디렉터리에 있는 파일들을 리스트로 만들기 - glob(pathname)</a></li>
+</ul>
+</li>
+<li><a href="#pickle">pickle</a></li>
+<li><a href="#os">os</a><ul>
+<li><a href="#-osenviron">내 시스템의 환경 변숫값을 알고 싶을 때 - os.environ</a></li>
+<li><a href="#-oschdir">디렉터리 위치 변경하기 - os.chdir</a></li>
+<li><a href="#-osgetcwd">디렉터리 위치 돌려받기 - os.getcwd</a></li>
+<li><a href="#-ossystem">시스템 명령어 호출하기 - os.system</a></li>
+<li><a href="#-ospopen">실행한 시스템 명령어의 결괏값 돌려받기 - os.popen</a></li>
+</ul>
+</li>
+<li><a href="#zipfile">zipfile</a></li>
+<li><a href="#threading">threading</a></li>
+<li><a href="#tempfile">tempfile</a></li>
+<li><a href="#traceback">traceback</a></li>
+<li><a href="#json">json</a></li>
+<li><a href="#urllib">urllib</a></li>
+<li><a href="#webbrowser">webbrowser</a></li>
+</ul>
+</div>
+<h2 id="datetimedate">datetime.date</h2>
+<p>datetime.date는 연, 월, 일로 날짜를 표현할 때 사용하는 함수이다.</p>
+<p>만약 A 군과 B 양이 2021년 12월 14일부터 만나기 시작했다면 2023년 4월 5일은 둘이 사귄 지 며칠째 되는 날일까? 아울러 사귀기 시작한 2021년 12월 14일은 무슨 요일이었을까? datetime.date 함수를 사용하면 이 문제를 쉽게 해결할 수 있다.</p>
+<p><img alt="" src="https://wikidocs.net/images/page/33/05_6_pic1.png" /></p>
+<p>연, 월, 일로 다음과 같이 datetime.date 객체를 만들 수 있다.</p>
+<pre><code class="language-python">&gt;&gt;&gt; import datetime
+&gt;&gt;&gt; day1 = datetime.date(2021, 12, 14)
+&gt;&gt;&gt; day2 = datetime.date(2023, 4, 5)
+</code></pre>
+<p>이처럼 연, 월, 일을 인수로 하여 2021년 12월 14일에 해당하는 날짜 객체는 day1, 2023년 4월 5일에 해당하는 날짜 객체는 day2로 생성하였다. 이렇게 날짜 객체를 만들었다면 두 날짜의 차이는 다음과 같이 뺄셈으로 쉽게 구할 수 있다.</p>
+<pre><code class="language-python">&gt;&gt;&gt; diff = day2 - day1
+&gt;&gt;&gt; diff.days
+477
+</code></pre>
+<p>day2에서 day1을 빼면 datetime 모듈의 timedelta 객체가 리턴된다. 이 객체를 diff 변수에 대입하고 이 diff 변수를 이용하여 두 날짜의 차이를 쉽게 확인해 봤다.</p>
+<p>요일은 datetime.date 객체의 weekday 함수를 사용하면 쉽게 구할 수 있다.</p>
+<pre><code class="language-python">&gt;&gt;&gt; day = datetime.date(2021, 12, 14)
+&gt;&gt;&gt; day.weekday()
+1
+</code></pre>
+<p>0은 월요일을 의미하며 순서대로 1은 화요일, 2는 수요일, …, 6은 일요일이 된다. 이와 달리 월요일은 1, 화요일은 2, …, 일요일은 7을 리턴하려면 다음처럼 isoweekday 함수를 사용하면 된다.</p>
+<pre><code class="language-python">&gt;&gt;&gt; day.isoweekday()
+2
+</code></pre>
+<p>2021년 12월 14일은 화요일이므로 isoweekday()를 사용하면 화요일을 뜻하는 2가 리턴된다. weekday()를 사용하면 1이 리턴된다.</p>
+<h2 id="time">time</h2>
+<p>시간과 관련된 time 모듈에는 함수가 매우 많다. 그중 가장 유용한 몇 가지만 알아보자.</p>
+<h3 id="timetime">time.time</h3>
+<p>time.time()은 UTC(universal time coordinated, 협정 세계 표준시)를 사용하여 현재 시간을 실수 형태로 리턴하는 함수이다. 1970년 1월 1일 0시 0분 0초를 기준으로 지난 시간을 초 단위로 리턴해 준다.</p>
+<pre><code class="language-python">&gt;&gt;&gt; import time
+&gt;&gt;&gt; time.time()
+1684983953.5221913
+</code></pre>
+<h3 id="timelocaltime">time.localtime</h3>
+<p>time.localtime은 time.time()이 리턴한 실숫값을 사용해서 연, 월, 일, 시, 분, 초, ... 의 형태로 바꾸어 주는 함수이다.</p>
+<pre><code class="language-python">&gt;&gt;&gt; time.localtime(time.time())
+time.struct_time(tm_year=2023, tm_mon=5, tm_mday=21, tm_hour=16,
+    tm_min=48, tm_sec=42, tm_wday=1, tm_yday=141, tm_isdst=0)
+</code></pre>
+<h3 id="timeasctime">time.asctime</h3>
+<p>time.asctime은 time.localtime가 리턴된 튜플 형태의 값을 인수로 받아서 날짜와 시간을 알아보기 쉬운 형태로 리턴하는 함수이다.</p>
+<pre><code class="language-python">&gt;&gt;&gt; time.asctime(time.localtime(time.time()))
+'Fri Apr 28 20:50:20 2023'
+</code></pre>
+<h3 id="timectime">time.ctime</h3>
+<p><code>time.asctime(time.localtime(time.time()))</code>은 간단하게 time.ctime()으로 표시할 수 있다. ctime이 asctime과 다른 점은 항상 현재 시간만을 리턴한다는 점이다.</p>
+<pre><code class="language-python">&gt;&gt;&gt; time.ctime()
+'Fri Apr 28 20:56:31 2023'
+</code></pre>
+<h3 id="timestrftime">time.strftime</h3>
+<p>strftime 함수는 시간에 관계된 것을 세밀하게 표현하는 여러 가지 포맷 코드를 제공한다.</p>
+<pre><code class="language-no-highlight">time.strftime('출력할 형식 포맷 코드', time.localtime(time.time()))
+</code></pre>
+<p><em>시간에 관계된 것을 표현하는 포맷 코드</em></p>
+<table>
+<thead>
+<tr>
+<th>포맷코드</th>
+<th>설명</th>
+<th>예</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>%a</td>
+<td>요일의 줄임말</td>
+<td>Mon</td>
+</tr>
+<tr>
+<td>%A</td>
+<td>요일</td>
+<td>Monday</td>
+</tr>
+<tr>
+<td>%b</td>
+<td>달의 줄임말</td>
+<td>Jan</td>
+</tr>
+<tr>
+<td>%B</td>
+<td>달</td>
+<td>January</td>
+</tr>
+<tr>
+<td>%c</td>
+<td>날짜와 시간을 출력함.</td>
+<td>Thu May 25 10:13:52 2023</td>
+</tr>
+<tr>
+<td>%d</td>
+<td>일(day)</td>
+<td>[01,31]</td>
+</tr>
+<tr>
+<td>%H</td>
+<td>시간(hour): 24시간 출력 형태</td>
+<td>[00,23]</td>
+</tr>
+<tr>
+<td>%I</td>
+<td>시간(hour): 12시간 출력 형태</td>
+<td>[01,12]</td>
+</tr>
+<tr>
+<td>%j</td>
+<td>1년 중 누적 날짜</td>
+<td>[001,366]</td>
+</tr>
+<tr>
+<td>%m</td>
+<td>달</td>
+<td>[01,12]</td>
+</tr>
+<tr>
+<td>%M</td>
+<td>분</td>
+<td>[01,59]</td>
+</tr>
+<tr>
+<td>%p</td>
+<td>AM or PM</td>
+<td>AM</td>
+</tr>
+<tr>
+<td>%S</td>
+<td>초</td>
+<td>[00,59]</td>
+</tr>
+<tr>
+<td>%U</td>
+<td>1년 중 누적 주(일요일 시작)</td>
+<td>[00,53]</td>
+</tr>
+<tr>
+<td>%w</td>
+<td>숫자로 된 요일</td>
+<td>[0(일), 6(토)]</td>
+</tr>
+<tr>
+<td>%W</td>
+<td>1년 중 누적 주(월요일 시작)</td>
+<td>[00,53]</td>
+</tr>
+<tr>
+<td>%x</td>
+<td>현재 설정된 지역에 기반한 날짜 출력</td>
+<td>05/25/23</td>
+</tr>
+<tr>
+<td>%X</td>
+<td>현재 설정된 지역에 기반한 시간 출력</td>
+<td>17:22:21</td>
+</tr>
+<tr>
+<td>%Y</td>
+<td>연도 출력</td>
+<td>2023</td>
+</tr>
+<tr>
+<td>%Z</td>
+<td>시간대 출력</td>
+<td>대한민국 표준시</td>
+</tr>
+<tr>
+<td>%%</td>
+<td>문자 %</td>
+<td>%</td>
+</tr>
+<tr>
+<td>%y</td>
+<td>세기 부분을 제외한 연도 출력</td>
+<td>01</td>
+</tr>
+</tbody>
+</table>
+<p>다음은 time.strftime을 사용하는 예이다.</p>
+<pre><code class="language-python">&gt;&gt;&gt; import time
+&gt;&gt;&gt; time.strftime('%x', time.localtime(time.time()))
+'05/25/23'
+&gt;&gt;&gt; time.strftime('%c', time.localtime(time.time()))
+'Thu May 25 10:13:52 2023
+</code></pre>
+<h3 id="timesleep">time.sleep</h3>
+<p>time.sleep 함수는 주로 루프 안에서 많이 사용한다. 이 함수를 사용하면 일정한 시간 간격을 두고 루프를 실행할 수 있다. 다음 예를 살펴보자.</p>
+<pre><code class="language-python"># sleep1.py
+import time
+for i in range(10):
+    print(i)
+    time.sleep(1)
+</code></pre>
+<p>위 예는 1초 간격으로 0부터 9까지의 숫자를 출력한다. time.sleep 함수의 인수는 실수 형태를 쓸 수 있다. 즉 1이면 1초, 0.5면 0.5초가 되는 것이다.</p>
+<p><fieldset><legend>점프 투 파이썬</legend>
+<strong>인수 없이 time 함수 사용하기</strong></p>
+<p>time.localtime, time.asctime, time.strftime 함수는 다음처럼 입력 인수 없이 사용할 수 있다. 입력 인수 없이 사용할 경우 현재 시각을 기준으로 함수가 수행된다.</p>
+<pre><code class="language-python">&gt;&gt;&gt; time.localtime()
+time.struct_time(tm_year=2023, tm_mon=6, tm_mday=18, tm_hour=17, tm_min=1, tm_sec=4, tm_wday=6, tm_yday=169, tm_isdst=0)
+&gt;&gt;&gt; time.asctime()
+'Sun Jun 18 17:01:09 2023'
+&gt;&gt;&gt; time.strftime('%c')
+'Sun Jun 18 17:01:30 2023'
+</code></pre>
+<p></fieldset></p>
+<h2 id="mathgcd">math.gcd</h2>
+<p>math.gcd 함수를 이용하면 최대 공약수(gcd, greatest common divisor)를 쉽게 구할 수 있다.</p>
+<blockquote>
+<ul>
+<li>math.gcd 함수는 파이썬 3.5 버전부터 사용할 수 있다.</li>
+<li>공약수란 두 수 이상의 여러 수의 공통된 약수를 말하며 공약수 중 가장 큰 수를 최대 공약수라고 말한다. 예를 들어 30과 15의 약수는 1, 3, 5, 15, 최대 공약수는 15이다.</li>
+</ul>
+</blockquote>
+<p>어린이집에서 사탕 60개, 초콜릿 100개, 젤리 80개를 준비했다. 아이들이 서로 싸우지 않도록 똑같이 나누어 봉지에 담는다고 하면 최대 몇 봉지까지 만들 수 있을까? 단, 사탕, 초콜릿, 젤리는 남기지 않고 모두 담도록 한다.</p>
+<p><img alt="" src="https://wikidocs.net/images/page/33/05_6_pic2.png" /></p>
+<p>이 문제는 60, 100, 80의 최대 공약수를 구하면 바로 해결된다. 즉, 똑같이 나눌 수 있는 봉지 개수가 최대가 되는 수를 구하면 된다.</p>
+<pre><code class="language-python">&gt;&gt;&gt; import math
+&gt;&gt;&gt; math.gcd(60, 100, 80)
+20
+</code></pre>
+<blockquote>
+<p>파이썬 3.9 버전부터는 math.gcd에 여러 개의 인수를 입력할 수 있지만, 3.9 미만 버전에서는 2개까지만 허용된다.</p>
+</blockquote>
+<p>math.gcd() 함수로 최대 공약수를 구했더니 20이었다. 따라서 최대 20봉지를 만들 수 있다. 각 봉지에 들어가는 사탕, 초콜릿, 젤리의 개수는 다음과 같이 전체 개수를 최대 공약수 20으로 나누면 구할 수 있다.</p>
+<pre><code class="language-python">&gt;&gt;&gt; 60/20, 100/20, 80/20
+(3.0, 5.0, 4.0)
+</code></pre>
+<p>따라서 한 봉지당 사탕 3개씩, 초콜릿 5개씩, 젤리 4개씩 담으면 된다.</p>
+<h2 id="mathlcm">math.lcm</h2>
+<p>math.lcm은 최소 공배수(lcm, least common multiple)를 구할 때 사용하는 함수이다.</p>
+<blockquote>
+<ul>
+<li>math.lcm() 함수는 파이썬 3.9 버전부터 사용할 수 있다.</li>
+<li>최소 공배수란 두 수의 공통 배수 중 가장 작은 수를 말한다. 예를 들어 3과 5의 최소 공배수는 15이다.</li>
+</ul>
+</blockquote>
+<p>어느 버스 정류장에 시내버스는 15분마다 도착하고 마을버스는 25분마다 도착한다고 한다. 오후 1시에 두 버스가 동시에 도착했다고 할 때 두 버스가 동시에 도착할 다음 시각을 알려면 어떻게 해야 할까?</p>
+<p><img alt="" src="https://wikidocs.net/images/page/33/05_6_pic3.png" /></p>
+<p>이 문제는 15와 25의 공통 배수 중 가장 작은 수, 즉 최소 공배수를 구하면 바로 해결된다.</p>
+<pre><code class="language-python">&gt;&gt;&gt; import math
+&gt;&gt;&gt; math.lcm(15, 25)
+75
+</code></pre>
+<p>math.lcm 함수를 사용하여 최소 공배수 75를 구했다. 따라서 두 버스가 동시에 도착할 다음 시각은 75분 후인 오후 2시 15분이다.</p>
+<h2 id="random">random</h2>
+<p>random은 난수(규칙이 없는 임의의 수)를 발생시키는 모듈이다. 먼저 random과 randint 함수에 대해 알아보자.</p>
+<p>다음은 0.0에서 1.0 사이의 실수 중에서 난수 값을 리턴하는 예를 보여 준다.</p>
+<pre><code class="language-python">&gt;&gt;&gt; import random
+&gt;&gt;&gt; random.random()
+0.53840103305098674
+</code></pre>
+<p>다음 예는 1에서 10 사이의 정수 중에서 난수 값을 리턴해 준다.</p>
+<pre><code class="language-python">&gt;&gt;&gt; random.randint(1, 10)
+6
+</code></pre>
+<p>다음 예는 1에서 55 사이의 정수 중에서 난수 값을 리턴해 준다.</p>
+<pre><code class="language-python">&gt;&gt;&gt; random.randint(1, 55)
+43
+</code></pre>
+<p>random 모듈을 사용해서 재미있는 함수를 하나 만들어 보자.</p>
+<pre><code class="language-python"># random_pop.py
+import random
+def random_pop(data):
+    number = random.randint(0, len(data)-1)
+    return data.pop(number)
+
+if __name__ == &quot;__main__&quot;:
+    data = [1, 2, 3, 4, 5]
+    while data: 
+        print(random_pop(data))
+</code></pre>
+<p><code>[실행 결과]</code></p>
+<pre><code class="language-no-highlight">2 
+3 
+1 
+5 
+4
+</code></pre>
+<p>앞에서 만든 random_pop 함수는 리스트의 요소 중에서 무작위로 하나를 선택하여 꺼낸 다음 그 값을 리턴한다. 물론 꺼낸 요소는 pop 메서드에 의해 사라진다.</p>
+<p>random_pop 함수는 random 모듈의 choice 함수를 사용하여 다음과 같이 좀 더 직관적으로 만들 수도 있다.</p>
+<pre><code class="language-python">def random_pop(data):
+    number = random.choice(data)
+    data.remove(number)
+    return number
+</code></pre>
+<p>random.choice 함수는 입력으로 받은 리스트에서 무작위로 하나를 선택하여 리턴한다.</p>
+<p>리스트의 항목을 무작위로 섞고 싶을 때는 random.sample 함수를 사용하면 된다.</p>
+<pre><code class="language-python">&gt;&gt;&gt; import random
+&gt;&gt;&gt; data = [1, 2, 3, 4, 5]
+&gt;&gt;&gt; random.sample(data, len(data))
+[5, 1, 3, 4, 2]
+</code></pre>
+<p>random.sample 함수에서 두 번째 인수인 <code>len(data)</code>는 무작위로 추출할 원소의 개수를 의미한다. 만약 <code>random.sample(data, 3)</code>과 같이 사용한다면 data 리스트에서 무작위로 3개를 추출하여 리턴할 것이다.</p>
+<h2 id="itertoolszip_longest">itertools.zip_longest</h2>
+<p><code>itertools.zip_longest(*iterables, fillvalue=None)</code> 함수는 같은 개수의 자료형을 묶는 파이썬 내장 함수인 zip 함수와 똑같이 동작한다. 하지만 <code>itertools.zip_longest()</code> 함수는 전달한 반복 가능 객체(<code>*iterables</code>)의 길이가 서로 다르다면 긴 객체의 길이에 맞춰 fillvalue에 설정한 값을 짧은 객체에 채울 수 있다.</p>
+<p>예시로 유치원생 5명에게 간식을 나누어 주고자 다음과 같은 파이썬 코드를 작성해 보자.</p>
+<pre><code class="language-python"># itertools_zip.py
+students = ['한민서', '황지민', '이영철', '이광수', '김승민']
+snacks = ['사탕', '초컬릿', '젤리']
+
+result = zip(students, snacks)
+print(list(result))
+</code></pre>
+<p>간식의 개수가 유치원생보다 적으므로 이 파이썬 코드를 실행하면 다음과 같은 결과가 나온다.</p>
+<pre><code class="language-python">[('한민서', '사탕'), ('황지민', '초컬릿'), ('이영철', '젤리')]
+</code></pre>
+<p>students와 snacks의 요소 개수가 다르므로 더 적은 snacks의 개수만큼만 zip()으로 묶게 된다.</p>
+<p>students의 요소 개수가 snacks보다 많을 때 그만큼을 ‘새우깡’으로 채우려면 어떻게 해야 할까? 이럴 때 요소 개수가 많은 것을 기준으로 자료형을 묶는 itertools.zip_longest()를 사용하면 된다. 부족한 항목은 None으로 채우는데, 다음처럼 fillvalue로 값을 지정하면 None 대신 다른 값으로 채울 수 있다.</p>
+<pre><code class="language-python"># itertools_zip.py
+import itertools
+
+students = ['한민서', '황지민', '이영철', '이광수', '김승민']
+snacks = ['사탕', '초컬릿', '젤리']
+
+result = itertools.zip_longest(students, snacks, [[MARK]]fillvalue='새우깡'[[/MARK]])
+print(list(result))
+</code></pre>
+<p>실행 결과는 다음과 같다.</p>
+<pre><code class="language-no-highlight">[('한민서', '사탕'), ('황지민', '초콜릿'), ('이영철', '젤리'), ('이광수', '새우깡'), ('김승민', '새우깡')]
+</code></pre>
+<h2 id="itertoolspermutation">itertools.permutation</h2>
+<p><code>itertools.permutations(iterable, r)</code>은 반복 가능 객체 중에서 r개를 선택한 순열을 이터레이터로 리턴하는 함수이다.</p>
+<blockquote>
+<p>이터레이터란 반복 가능한 객체를 의미한다.</p>
+</blockquote>
+<p>1, 2, 3이라는 숫자가 적힌 3장의 카드에서 2장의 카드를 꺼내 만들 수 있는 2자리 숫자를 모두 구하려면 어떻게 해야 할까?</p>
+<p><img alt="" src="https://wikidocs.net/images/page/33/05_6_pic4.png" /></p>
+<p>[1, 2, 3]이라는 3장의 카드 중 순서에 상관없이 2장을 뽑는 경우의 수는 모두 3가지이다(조합).</p>
+<ul>
+<li>1, 2</li>
+<li>2, 3</li>
+<li>1, 3</li>
+</ul>
+<p>하지만 이 문제에서는 2자리 숫자이므로 이 3가지에 순서를 더해 다음처럼 6가지가 된다(순열).</p>
+<ul>
+<li>1, 2</li>
+<li>2, 1</li>
+<li>2, 3</li>
+<li>3, 2</li>
+<li>1, 3</li>
+<li>3, 1</li>
+</ul>
+<p>이 순열은 itertools.permutations()를 사용하면 간단히 구할 수 있다.</p>
+<pre><code class="language-python">&gt;&gt;&gt; import itertools
+&gt;&gt;&gt; list(itertools.permutations(['1', '2', '3'], 2))
+[('1', '2'), ('1', '3'), ('2', '1'), ('2', '3'), ('3', '1'), ('3', '2')]
+</code></pre>
+<p>따라서 만들 수 있는 2자리 숫자는 다음과 같이 모두 6가지이다.</p>
+<pre><code class="language-python">&gt;&gt;&gt; for a, b in itertools.permutations(['1', '2', '3'], 2):
+...     print(a+b)
+...
+12
+13
+21
+23
+31
+32
+</code></pre>
+<p><fieldset><legend>점프 투 파이썬</legend>
+<strong>조합을 사용하는 함수</strong></p>
+<p>3장의 카드에서 순서에 상관없이 2장을 고르는 조합은 다음처럼 itertools.combinations()를 사용하면 된다.</p>
+<pre><code class="language-python">&gt;&gt;&gt; import itertools
+&gt;&gt;&gt; list(itertools.combinations(['1', '2', '3'], 2))
+[('1', '2'), ('1', '3'), ('2', '3')]
+</code></pre>
+<p></fieldset></p>
+<h2 id="itertoolscombination">itertools.combination</h2>
+<p><code>itertools.combinations(iterable, r)</code>은 반복 가능 객체 중에서 r개를 선택한 조합을 이터레이터로 리턴하는 함수이다.</p>
+<p>1~45 중 서로 다른 숫자 6개를 뽑는 로또 번호의 모든 경우의 수(조합)를 구하고 그 개수를 출력하려면 어떻게 해야 할까?</p>
+<p><img alt="" src="https://wikidocs.net/images/page/33/05_6_pic5.png" /></p>
+<p>다음과 같이 itertools.combinations()를 사용하면 45개의 숫자 중 6개를 선택하는 경우의 수를 구할 수 있다.</p>
+<pre><code class="language-python">&gt;&gt;&gt; import itertools
+&gt;&gt;&gt; it = itertools.combinations(range(1, 46), 6)
+</code></pre>
+<p><code>itertools.combinations(range(1, 46), 6)</code>은 1~45의 숫자 중에서 6개를 뽑는 경우의 수를 이터레이터로 리턴한다.</p>
+<p>이터레이터 객체를 루프를 이용하여 출력하면 아마 끝도 없이 출력될 것이다. 궁금하다면 직접 실행해 봐도 좋다.</p>
+<pre><code class="language-python">&gt;&gt;&gt; for num in it:
+...     print(num)
+...
+(1, 2, 3, 4, 5, 6)
+(1, 2, 3, 4, 5, 7)
+(1, 2, 3, 4, 5, 8)
+(1, 2, 3, 4, 5, 9)
+(1, 2, 3, 4, 5, 10)
+(1, 2, 3, 4, 5, 11)
+(1, 2, 3, 4, 5, 12)
+(1, 2, 3, 4, 5, 13)
+...
+</code></pre>
+<p>하지만 순환하여 출력하지 않고 이터레이터의 개수만 세려면 다음과 같이 하면 된다.</p>
+<pre><code class="language-python">&gt;&gt;&gt; len(list(itertools.combinations(range(1, 46), 6)))
+8145060
+</code></pre>
+<p>선택할 수 있는 로또 번호의 가짓수는 8,145,060이다.</p>
+<blockquote>
+<p>여러분이 반드시 로또에 당첨되길 희망한다면 서로 다른 번호로 구성한 8,145,060장의 로또를 사면 된다. 게임 1번에 1,000원이라고 할 때 그 금액은 무려 81억 4,506만 원이다.</p>
+</blockquote>
+<p><fieldset><legend>점프 투 파이썬</legend>
+<strong>중복 조합을 사용하는 함수</strong></p>
+<p>만약 로또 복권이 숫자 중복을 허용하도록 규칙이 변경된다면 경우의 수는 몇 개가 될까?</p>
+<blockquote>
+<p>중복이 허용된다는 것은 당첨 번호가 [1, 2, 3, 4, 5, 5]처럼 5가 2번 이상 나와도 되고 [1, 1, 1, 1, 1, 1]처럼 1이 6번 나와도 된다는 의미이다.</p>
+</blockquote>
+<p>같은 숫자를 허용하는 중복 조합은 itertools.combinations_with_replacement()를 사용하면 된다.</p>
+<pre><code class="language-python">&gt;&gt;&gt; len(list(itertools.combinations_with_replacement(range(1, 46), 6)))
+15890700
+</code></pre>
+<p>당연히 중복을 허용하지 않을 때보다 훨씬 많은 경우의 수가 리턴되는 것을 확인할 수 있다.
+</fieldset></p>
+<h2 id="functoolsreduce">functools.reduce</h2>
+<p><code>functools.reduce(function, iterable)</code>은 함수(function)를 반복 가능한 객체(iterable)의 요소에 차례대로(왼쪽에서 오른쪽으로) 누적 적용하여 이 객체를 하나의 값으로 줄이는 함수이다.</p>
+<p>다음은 입력 인수 data의 요소를 모두 더하여 리턴하는 add 함수이다.</p>
+<pre><code class="language-python">def add(data):
+    result = 0
+    for i in data:
+        result += i
+    return result
+
+data = [1, 2, 3, 4, 5]
+result = add(data)
+print(result)  # 15 출력
+</code></pre>
+<p>functools.reduce()를 사용하여 마찬가지로 동작하는 코드를 작성하려면 어떻게 해야 할까? functools.reduce()를 사용한 코드는 다음과 같다.</p>
+<pre><code class="language-python"># reduce_test.py
+import functools
+
+data = [1, 2, 3, 4, 5]
+result = functools.reduce(lambda x, y: x + y, data)
+print(result)  # 15 출력
+</code></pre>
+<p>functools.reduce()를 사용하면 reduce()에 선언한 람다 함수를 data 요소에 차례대로 누적 적용하여 다음과 같이 계산한다.</p>
+<pre><code class="language-no-highlight">((((1+2)+3)+4)+5)
+</code></pre>
+<p>따라서 앞서 본 add 함수와 동일한 역할을 하게 된다.</p>
+<p><fieldset><legend>점프 투 파이썬</legend>
+<strong>functools.reduce()로 최댓값 구하기</strong></p>
+<p>functools.reduce 함수로 최댓값도 구할 수 있다.</p>
+<pre><code class="language-python">num_list = [3, 2, 8, 1, 6, 7]
+max_num = functools.reduce(lambda x, y: x if x &gt; y else y, num_list)
+print(max_num)  # 8 출력
+</code></pre>
+<p>[3, 2, 8, 1, 6, 7] 요소를 차례대로 reduce()의 람다 함수로 전달하여 두 값 중 큰 값을 선택하고 마지막에 남은 최댓값을 리턴한다.</p>
+<blockquote>
+<p>최솟값은 <code>functools.reduce(lambda x, y: x if x &lt; y else y, num_list)</code>로 구할수 있다.
+</fieldset></p>
+</blockquote>
+<h2 id="operatoritemgetter">operator.itemgetter</h2>
+<p>operator.itemgetter는 주로 sorted와 같은 함수의 key 매개변수에 적용하여 다양한 기준으로 정렬할 수 있도록 도와주는 모듈이다.</p>
+<p>예를 들어 학생의 이름, 나이, 성적 등의 정보를 저장한, 다음과 같은 students 리스트가 있다고 가정해 보자.</p>
+<pre><code class="language-python">students = [
+    (&quot;jane&quot;, 22, 'A'),
+    (&quot;dave&quot;, 32, 'B'),
+    (&quot;sally&quot;, 17, 'B'),
+]
+</code></pre>
+<p>students 리스트에는 3개의 튜플이 있으며 각 튜플은 순서대로 이름, 나이, 성적에 해당하는 데이터로 이루어졌다. 이 리스트를 나이순으로 정렬하려면 어떻게 해야 할까?</p>
+<p><img alt="" src="https://wikidocs.net/images/page/33/05_6_pic6.png" /></p>
+<p>이 문제는 다음처럼 sorted 함수의 key 매개변수에 itemgetter()를 적용하면 쉽게 해결할 수 있다.</p>
+<pre><code class="language-python"># itemgetter1.py
+from operator import itemgetter
+
+students = [
+    (&quot;jane&quot;, 22, 'A'),
+    (&quot;dave&quot;, 32, 'B'),
+    (&quot;sally&quot;, 17, 'B'),
+]
+
+result = sorted(students, key=itemgetter(1))
+print(result)
+</code></pre>
+<p>이 파일을 실행하여 출력해 보면 다음과 같이 나이 순서대로 정렬한 것을 확인할 수 있다.</p>
+<pre><code class="language-no-highlight">[('sally', 17, 'B'), ('jane', 22, 'A'), ('dave', 32, 'B')]
+</code></pre>
+<p>itemgetter(1)은 students의 아이템인 튜플의 두 번째 요소를 기준으로 정렬하겠다는 의미이다. 만약 itemgetter(2)와 같이 사용한다면 성적순으로 정렬한다.</p>
+<p>이번에는 students의 요소가 다음처럼 딕셔너리일 때를 생각해 보자.</p>
+<pre><code class="language-python">students = [
+    {&quot;name&quot;: &quot;jane&quot;, &quot;age&quot;: 22, &quot;grade&quot;: 'A'},
+    {&quot;name&quot;: &quot;dave&quot;, &quot;age&quot;: 32, &quot;grade&quot;: 'B'},
+    {&quot;name&quot;: &quot;sally&quot;, &quot;age&quot;: 17, &quot;grade&quot;: 'B'},
+]
+</code></pre>
+<p>딕셔너리일 때도 마찬가지로 age를 기준으로 정렬해 보자. 이때도 마찬가지로 itemgetter()를 적용하면 된다. 단, 이번에는 <code>itemgetter('age')</code>처럼 딕셔너리의 키를 사용해야 한다. <code>itemgetter('age')</code>는 딕셔너리의 키인 age를 기준으로 정렬하겠다는 의미이다.</p>
+<pre><code class="language-python"># itemgetter2.py
+from operator import itemgetter
+
+students = [
+    {&quot;name&quot;: &quot;jane&quot;, &quot;age&quot;: 22, &quot;grade&quot;: 'A'},
+    {&quot;name&quot;: &quot;dave&quot;, &quot;age&quot;: 32, &quot;grade&quot;: 'B'},
+    {&quot;name&quot;: &quot;sally&quot;, &quot;age&quot;: 17, &quot;grade&quot;: 'B'},
+]
+
+result = sorted(students, [[MARK]]key=itemgetter('age')[[/MARK]])
+print(result)
+</code></pre>
+<p>출력 결과는 다음과 같이 age 순으로 정렬된 것을 확인할 수 있다.</p>
+<pre><code class="language-no-highlight">[{'name': 'sally', 'age': 17, 'grade': 'B'}, {'name': 'jane', 'age': 22, 'grade': 'A'}, {'name': 'dave', 'age': 32, 'grade': 'B'}]
+</code></pre>
+<p><fieldset><legend>점프 투 파이썬</legend>
+<strong>operator.attrgetter()</strong></p>
+<p>students 리스트의 요소가 튜플이 아닌 Student 클래스의 객체라면 다음처럼 attrgetter()를 적용하여 정렬해야 한다.</p>
+<pre><code class="language-python"># attrgetter1.py
+from operator import attrgetter
+
+class Student:
+    def __init__(self, name, age, grade):
+        self.name = name
+        self.age = age
+        self.grade = grade
+
+students = [
+    Student('jane', 22, 'A'),
+    Student('dave', 32, 'B'),
+    Student('sally', 17, 'B'),
+]
+
+result = sorted(students, [[MARK]]key=attrgetter('age')[[/MARK]])
+</code></pre>
+<p><code>attrgetter('age')</code>는 Student 객체의 age 속성으로 정렬하겠다는 의미이다. 이와 마찬가지로 <code>attrgetter('grade')</code>와 같이 사용하면 성적순으로 정렬한다.
+</fieldset></p>
+<h2 id="shutil">shutil</h2>
+<p>shutil은 파일을 복사(copy)하거나 이동(move)할 때 사용하는 모듈이다.</p>
+<p>작업 중인 파일을 자동으로 백업하는 기능을 구현하고자 <code>c:\doit\a.txt</code>를 <code>c:\temp\a.txt.bak</code>이라는 이름으로 복사하는 프로그램을 만들고자 한다. 어떻게 만들어야 할까? <code>c:\doit</code> 디렉터리에 a.txt를 만드는 중이며 백업용 <code>c:\temp</code> 디렉터리는 이미 만들었다고 가정한다.</p>
+<p>다음은 shutil을 사용한 방법이다.</p>
+<pre><code class="language-python"># shutil_copy.py
+import shutil
+
+shutil.copy(&quot;c:/doit/a.txt&quot;, &quot;c:/temp/a.txt.bak&quot;)
+</code></pre>
+<p><fieldset><legend>점프 투 파이썬</legend>
+<strong>shutil.move로 삭제 기능 만들기</strong></p>
+<p>휴지통으로 삭제하는 기능을 구현하고자 <code>c:\doit\a.txt</code> 파일을 <code>c:\temp\a.txt</code>로 이동하려면 다음과 같이 코드를 작성해야 한다.</p>
+<pre><code class="language-python"># shutil_move.py
+import shutil
+
+shutil.move(&quot;c:/doit/a.txt&quot;, &quot;c:/temp/a.txt&quot;)
+</code></pre>
+<p></fieldset></p>
+<h2 id="glob">glob</h2>
+<p>가끔 파일을 읽고 쓰는 기능이 있는 프로그램을 만들다 보면 특정 디렉터리에 있는 파일 이름 모두를 알아야 할 때가 있다. 이럴 때 사용하는 모듈이 바로 glob이다.</p>
+<h3 id="-globpathname">디렉터리에 있는 파일들을 리스트로 만들기 - glob(pathname)</h3>
+<p>glob 모듈은 디렉터리 안의 파일들을 읽어서 리턴한다. <code>*</code>, <code>?</code> 등 메타 문자를 써서 원하는 파일만 읽어 들일 수도 있다. 다음은 <code>C:/doit</code> 디렉터리에 있는 파일 중 이름이 mark로 시작하는 파일을 모두 찾아서 읽어들이는 예이다.</p>
+<blockquote>
+<p><code>?</code>는 1자리 문자열, <code>*</code>은 임의의 길이의 문자열을 의미한다.</p>
+</blockquote>
+<pre><code class="language-python">&gt;&gt;&gt; import glob
+&gt;&gt;&gt; glob.glob(&quot;c:/doit/mark*&quot;)
+['c:/doit\\marks1.py', 'c:/doit\\marks2.py', 'c:/doit\\marks3.py']
+&gt;&gt;&gt;
+</code></pre>
+<h2 id="pickle">pickle</h2>
+<p>pickle은 객체의 형태를 그대로 유지하면서 파일에 저장하고 불러올 수 있게 하는 모듈이다. 다음 예는 pickle 모듈의 dump 함수를 사용하여 딕셔너리 객체인 data를 그대로 파일에 저장하는 방법을 보여 준다.</p>
+<pre><code class="language-python">&gt;&gt;&gt; import pickle
+&gt;&gt;&gt; f = open(&quot;test.txt&quot;, 'wb')
+&gt;&gt;&gt; data = {1: 'python', 2: 'you need'}
+&gt;&gt;&gt; pickle.dump(data, f)
+&gt;&gt;&gt; f.close()
+</code></pre>
+<p>다음은 pickle.dump로 저장한 파일을 pickle.load를 사용해서 원래 있던 딕셔너리 객체(data) 상태 그대로 불러오는 예이다.</p>
+<pre><code class="language-python">&gt;&gt;&gt; import pickle
+&gt;&gt;&gt; f = open(&quot;test.txt&quot;, 'rb')
+&gt;&gt;&gt; data = pickle.load(f)
+&gt;&gt;&gt; print(data)
+{2:'you need', 1:'python'}
+</code></pre>
+<p>위 예에서는 딕셔너리 객체를 사용했지만, 어떤 자료형이든 저장하고 불러올 수 있다.</p>
+<h2 id="os">os</h2>
+<p>os 모듈은 환경 변수나 디렉터리, 파일 등의 OS 자원을 제어할 수 있게 해 주는 모듈이다.</p>
+<h3 id="-osenviron">내 시스템의 환경 변숫값을 알고 싶을 때 - os.environ</h3>
+<p>시스템은 제각기 다른 환경 변숫값을 가지고 있는데, os.environ은 현재 시스템의 환경 변숫값을 리턴한다. 다음을 따라 해 보자.</p>
+<pre><code class="language-python">&gt;&gt;&gt; import os
+&gt;&gt;&gt; os.environ
+environ({'PROGRAMFILES': 'C:\\Program Files', 'APPDATA': … 생략 …})
+</code></pre>
+<p>이 결괏값은 필자의 시스템 정보이다. os.environ은 환경 변수에 대한 정보를 딕셔너리 형태로 구성된 environ 객체로 리턴한다. 자세히 보면 여러 가지 유용한 정보를 찾을 수 있다.</p>
+<p>리턴받은 객체는 다음과 같이 호출하여 사용할 수 있다. 다음은 필자 시스템의 PATH 환경 변수 내용이다.</p>
+<pre><code class="language-python">&gt;&gt;&gt; os.environ['PATH']
+'C:\\ProgramData\\Oracle\\Java\\javapath;...생략...'
+</code></pre>
+<h3 id="-oschdir">디렉터리 위치 변경하기 - os.chdir</h3>
+<p>os.chdir를 사용하면 다음과 같이 현재 디렉터리의 위치를 변경할 수 있다.</p>
+<pre><code class="language-python">&gt;&gt;&gt; os.chdir(&quot;C:\WINDOWS&quot;)
+</code></pre>
+<h3 id="-osgetcwd">디렉터리 위치 돌려받기 - os.getcwd</h3>
+<p>os.getcwd는 현재 자신의 디렉터리 위치를 리턴한다.</p>
+<pre><code class="language-python">&gt;&gt;&gt; os.getcwd()
+'C:\WINDOWS'
+</code></pre>
+<h3 id="-ossystem">시스템 명령어 호출하기 - os.system</h3>
+<p>시스템 자체의 프로그램이나 기타 명령어를 파이썬에서 호출할 수도 있다. <code>os.system("명령어")</code>처럼 사용한다. 다음은 현재 디렉터리에서 시스템 명령어 dir을 실행하는 예이다.</p>
+<pre><code class="language-python">&gt;&gt;&gt; os.system(&quot;dir&quot;)
+</code></pre>
+<h3 id="-ospopen">실행한 시스템 명령어의 결괏값 돌려받기 - os.popen</h3>
+<p>os.popen은 시스템 명령어를 실행한 결괏값을 읽기 모드 형태의 파일 객체로 리턴한다.</p>
+<pre><code class="language-python">&gt;&gt;&gt; f = os.popen(&quot;dir&quot;)
+</code></pre>
+<p>읽어 들인 파일 객체의 내용을 보기 위해서는 다음과 같이 하면 된다.</p>
+<pre><code class="language-python">&gt;&gt;&gt; print(f.read())
+</code></pre>
+<p>이 밖에 유용한 os 관련 함수는 다음과 같다.</p>
+<table>
+<thead>
+<tr>
+<th>함수</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>os.mkdir(디렉터리)</td>
+<td>디렉터리를 생성한다.</td>
+</tr>
+<tr>
+<td>os.rmdir(디렉터리)</td>
+<td>디렉터리를 삭제한다. 단, 디렉터리가 비어 있어야 삭제할 수 있다.</td>
+</tr>
+<tr>
+<td>os.remove(파일)</td>
+<td>파일을 지운다.</td>
+</tr>
+<tr>
+<td>os.rename(src, dst)</td>
+<td>src라는 이름의 파일을 dst라는 이름으로 바꾼다.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="zipfile">zipfile</h2>
+<p>zipfile은 여러 개의 파일을 zip 형식으로 합치거나 이를 해제할 때 사용하는 모듈이다.</p>
+<p>다음과 같은 3개의 텍스트 파일이 있다고 가정해 보자.</p>
+<pre><code class="language-no-highlight">a.txt
+b.txt
+c.txt
+</code></pre>
+<p>이 3개의 텍스트 파일을 하나로 합쳐 ‘mytext.zip’이라는 파일을 만들고 이 파일을 원래의 텍스트 파일 3개로 해제하는 프로그램을 만들려면 어떻게 해야 할까?</p>
+<p>zipfile.ZipFile()을 사용하여 해결해 보자.</p>
+<pre><code class="language-python"># zipfile_test.py
+import zipfile
+
+# 파일 합치기
+with zipfile.ZipFile('mytext.zip', 'w') as myzip:
+    myzip.write('a.txt')
+    myzip.write('b.txt')
+    myzip.write('c.txt')
+
+# 해제하기
+with zipfile.ZipFile('mytext.zip') as myzip:
+    myzip.extractall()
+</code></pre>
+<p>ZipFile 객체의 write() 함수로 개별 파일을 추가할 수 있고 extreactall() 함수를 사용하면 모든 파일을 해제할 수 있다.</p>
+<p>합친 파일에서 특정 파일만 해제하고 싶다면 다음과 같이 extract() 함수를 사용하면 된다.</p>
+<pre><code class="language-python"># 특정 파일만 해제하기
+with zipfile.ZipFile('mytext.zip') as myzip:
+    myzip.extract('a.txt')
+</code></pre>
+<p>만약 파일을 압축하여 묶고 싶은 경우에는 compression, compresslevel 옵션을 사용할 수 있다.</p>
+<pre><code class="language-python"># 압축하여 묶기
+with zipfile.ZipFile('mytext.zip', 'w', [[MARK]]compression=zipfile.ZIP_LZMA, compresslevel=9[[/MARK]]) as myzip:
+    (... 생략 ...)
+</code></pre>
+<p>compression에는 4가지 종류가 있다.</p>
+<ul>
+<li>ZIP_STORED: 압축하지 않고 파일을 zip으로만 묶는다. 속도가 빠르다.</li>
+<li>ZIP_DEFLATED: 일반적인 zip 압축으로 속도가 빠르고 압축률은 낮다(호환성이 좋다).</li>
+<li>ZIP_BZIP2: bzip2 압축으로 압축률이 높고 속도가 느리다.</li>
+<li>ZIP_LZMA: lzma 압축으로 압축률이 높고 속도가 느리다(7zip과 동일한 알고리즘으로 알려져 있다).</li>
+</ul>
+<p>compressionlevel은 압축 수준을 의미하는 숫자값으로, 1~9를 사용한다. 1은 속도가 가장 빠르지만 압축률이 낮고, 9는 속도는 가장 느리지만 압축률이 높다.</p>
+<h2 id="threading">threading</h2>
+<p>스레드 프로그래밍은 초보 프로그래머가 구현하기에는 매우 어려운 기술이다. 여기에 잠시 소개했으므로 눈으로만 살펴보고 넘어가자.</p>
+<p>컴퓨터에서 동작하고 있는 프로그램을 프로세스(process)라고 한다. 보통 1개의 프로세스는 1가지 일만 하지만, 스레드(thread)를 사용하면 한 프로세스 안에서 2가지 또는 그 이상의 일을 동시에 수행할 수 있다.</p>
+<p>간단한 예제로 설명을 대신하겠다.</p>
+<pre><code class="language-python"># thread_test.py
+import time
+
+def long_task():  # 5초의 시간이 걸리는 함수
+    for i in range(5):
+        time.sleep(1)  # 1초간 대기한다.
+        print(&quot;working:%s\n&quot; % i)
+
+print(&quot;Start&quot;)
+
+for i in range(5):  # long_task를 5회 수행한다.
+    long_task()
+
+print(&quot;End&quot;)
+</code></pre>
+<p>long_task는 수행하는 데 5초의 시간이 걸리는 함수이다. 위 프로그램은 이 함수를 총 5번 반복해서 수행하는 프로그램이다. 이 프로그램은 5초가 5번 반복되므로 총 25초의 시간이 걸린다.</p>
+<p>하지만 앞에서 설명했듯이 스레드를 사용하면 5초의 시간이 걸리는 long_task 함수를 동시에 실행할 수 있으므로 시간을 줄일 수 있다.</p>
+<p>다음과 같이 프로그램을 수정해 보자.</p>
+<pre><code class="language-python"># thread_test.py
+import time
+import threading  # 스레드를 생성하기 위해서는 threading 모듈이 필요하다.
+
+def long_task():
+    for i in range(5):
+        time.sleep(1)
+        print(&quot;working:%s\n&quot; % i)
+
+print(&quot;Start&quot;)
+
+threads = []
+for i in range(5):
+    t = threading.Thread(target=long_task)  # 스레드를 생성한다.
+    threads.append(t) 
+
+for t in threads:
+    t.start()  # 스레드를 실행한다.
+
+print(&quot;End&quot;)
+</code></pre>
+<p>이와 같이 프로그램을 수정하고 실행해 보면 25초 걸리던 작업이 5초 정도에 수행되는 것을 확인할 수 있다. threading.Thread를 사용하여 만든 스레드 객체가 동시 작업을 가능하게 해 주기 때문이다.</p>
+<p>하지만 프로그램을 실행해 보면 "Start"와 "End"가 먼저 출력되고 그 이후에 스레드의 결과가 출력되는 것을 확인할 수 있다. 그리고 프로그램이 정상 종료되지 않는다. 우리가 기대하는 것은 "Start"가 출력되고 그다음에 스레드의 결과가 출력된 후 마지막으로 "End"가 출력되는 것이다.</p>
+<p>이 문제를 해결하기 위해서는 프로그램을 다음과 같이 수정해야 한다.</p>
+<pre><code class="language-python"># thread_test.py
+import time
+import threading
+
+def long_task():
+    for i in range(5):
+        time.sleep(1)
+        print(&quot;working:%s\n&quot; % i)
+
+print(&quot;Start&quot;)
+
+threads = []
+for i in range(5):
+    t = threading.Thread(target=long_task)
+    threads.append(t)
+
+for t in threads:
+    t.start()
+
+[[MARK]]for t in threads:
+    t.join()  # join으로 스레드가 종료될때까지 기다린다.[[/MARK]]
+
+print(&quot;End&quot;)
+</code></pre>
+<p>스레드의 join 함수는 해당 스레드가 종료될 때까지 기다리게 한다. 따라서 위와 같이 수정하면 우리가 원하던 출력을 보게 된다.</p>
+<h2 id="tempfile">tempfile</h2>
+<p>파일을 임시로 만들어서 사용할 때 유용한 모듈이 바로 tempfile이다. <code>tempfile.mkstemp()</code>는 중복되지 않는 임시 파일의 이름을 무작위로 만들어서 리턴한다.</p>
+<pre><code class="language-python">&gt;&gt;&gt; import tempfile
+&gt;&gt;&gt; filename = tempfile.mkstemp()
+&gt;&gt;&gt; filename
+'C:\WINDOWS\TEMP\~-275151-0'
+</code></pre>
+<p><code>tempfile.TemporaryFile()</code>은 임시 저장 공간으로 사용할 파일 객체를 리턴한다. 이 파일은 기본적으로 바이너리 쓰기 모드(wb)를 갖는다. <code>f.close()</code>가 호출되면 이 파일은 자동으로 삭제된다.</p>
+<pre><code class="language-python">&gt;&gt;&gt; import tempfile
+&gt;&gt;&gt; f = tempfile.TemporaryFile()
+&gt;&gt;&gt; f.close()
+</code></pre>
+<h2 id="traceback">traceback</h2>
+<p>traceback은 프로그램 실행 중 발생한 오류를 추적하고자 할 때 사용하는 모듈이다.</p>
+<p>다음과 같은 코드를 작성하여 실행해 보자.</p>
+<pre><code class="language-python"># traceback_test.py
+def a():
+    return 1/0
+
+def b():
+    a()
+
+def main():
+    try:
+        b()
+    except:
+        print(&quot;오류가 발생했습니다.&quot;)
+
+main()
+</code></pre>
+<p>프로그램 실행 결과는 다음과 같다.</p>
+<pre><code class="language-no-highlight">오류가 발생했습니다.
+</code></pre>
+<p>main() 함수가 시작되면 b() 함수를 호출하고 b() 함수에서 다시 a() 함수를 호출하여 1을 0으로 나누므로 오류가 발생하여 "오류가 발생했습니다."라는 메시지를 출력했다.</p>
+<blockquote>
+<p>이렇게 간단한 프로그램이 아니라 복잡한 파이썬 코드라면 어디에서 어떤 오류가 발생하는지 알기 어렵다.</p>
+</blockquote>
+<p>이때 이 코드에서 오류가 발생한 위치와 원인을 정확히 판단할 수 있도록 코드를 업그레이드하려면 어떻게 해야 할까?</p>
+<p>오류가 발생한 위치에 다음과 같이 traceback 모듈을 적용해 보자.</p>
+<pre><code class="language-python"># traceback_test.py
+[[MARK]]import traceback[[/MARK]]
+
+def a():
+    return 1/0
+
+def b():
+    a()
+
+def main():
+    try:
+        b()
+    except:
+        print(&quot;오류가 발생했습니다.&quot;)
+        [[MARK]]print(traceback.format_exc())[[/MARK]]
+
+main()
+</code></pre>
+<p>오류가 발생한 위치에 <code>print(traceback.format_exc())</code> 문장을 추가했다. traceback 모듈의 format_exc()는 오류 추적 결과를 문자열로 리턴하는 함수이다. 이렇게 코드를 수정하고 다시 프로그램을 실행하면 다음과 같이 출력될 것이다.</p>
+<pre><code class="language-no-highlight">오류가 발생했습니다.
+Traceback (most recent call last):
+  File &quot;c:\doit\traceback_sample.py&quot;, line 14, in main
+    b()
+  File &quot;c:\doit\traceback_sample.py&quot;, line 9, in b
+    a()
+  File &quot;c:\doit\traceback_sample.py&quot;, line 5, in a
+    return 1/0
+ZeroDivisionError: division by zero
+</code></pre>
+<p>오류 추적을 통해 main() 함수에서 b() 함수를 호출하고 b() 함수에서 다시 a() 함수를 호출하여 <code>1 / 0</code>을 실행하려 하므로 0으로 나눌 수 없다는 ZeroDivisionError가 발생했다는 것을 로그를 통해 정확하게 확인할 수 있다.</p>
+<h2 id="json">json</h2>
+<p>json은 JSON 데이터를 쉽게 처리하고자 사용하는 모듈이다.</p>
+<p>다음은 개인정보를 JSON 형태의 데이터로 만든 myinfo.json 파일이다.</p>
+<p><code>[파일명: myinfo.json]</code></p>
+<pre><code class="language-json">{
+    &quot;name&quot;: &quot;홍길동&quot;,
+    &quot;birth&quot;: &quot;0525&quot;,
+    &quot;age&quot;: 30
+}
+</code></pre>
+<p>인터넷으로 얻은 이 파일을 읽어 파이썬에서 처리할 수 있도록 딕셔너리 자료형으로 만들려면 어떻게 해야 할까?</p>
+<p>JSON 파일을 읽어 딕셔너리로 변환하려면 다음처럼 json 모듈을 사용하면 된다.</p>
+<pre><code class="language-python">&gt;&gt;&gt; import json
+&gt;&gt;&gt; with open('myinfo.json') as f:
+...     data = json.load(f)
+... 
+&gt;&gt;&gt; type(data)
+&lt;class 'dict'&gt;
+&gt;&gt;&gt; data
+{'name': '홍길동', 'birth': '0525', 'age': 30}
+</code></pre>
+<p>JSON 파일을 읽을 때는 이 예처럼 <code>json.load(파일_객체)</code>를 사용한다. 이렇게 load() 함수는 읽은 데이터를 딕셔너리 자료형으로 리턴한다. 이와 반대로 딕셔너리 자료형을 JSON 파일로 생성할 때는 다음처럼 <code>json.dump(딕셔너리, 파일_객체)</code>를 사용한다.</p>
+<pre><code class="language-python">&gt;&gt;&gt; import json
+&gt;&gt;&gt; data = {'name': '홍길동', 'birth': '0525', 'age': 30}
+&gt;&gt;&gt; with open('myinfo.json', 'w') as f:
+...     json.dump(data, f)
+</code></pre>
+<p>이번에는 파이썬 자료형을 JSON 문자열로 만드는 방법에 대해서 알아보자.</p>
+<pre><code class="language-python">&gt;&gt;&gt; import json
+&gt;&gt;&gt; d = {&quot;name&quot;:&quot;홍길동&quot;, &quot;birth&quot;:&quot;0525&quot;, &quot;age&quot;: 30}
+&gt;&gt;&gt; json_data = json.dumps(d)
+&gt;&gt;&gt; json_data
+'{&quot;name&quot;: &quot;\\ud64d\\uae38\\ub3d9&quot;, &quot;birth&quot;: &quot;0525&quot;, &quot;age&quot;: 30}'
+</code></pre>
+<p>딕셔너리 자료형을 JSON 문자열로 만들려면 json.dumps() 함수를 사용하면 된다. 그런데 딕셔너리를 JSON 데이터로 변경하면 ‘홍길동’과 같은 한글 문자열이 코드 형태로 표시된다. 왜냐하면 dump(), dumps() 함수는 기본적으로 데이터를 아스키 형태로 저장하기 때문이다. 유니코드 문자열을 아스키 형태로 저장하다 보니 한글 문자열이 마치 깨진 것처럼 보인다.</p>
+<p>그러나 JSON 문자열을 딕셔너리로 다시 역변환하여 사용하는 데는 전혀 문제가 없다. JSON 문자열을 딕셔너리로 변환할 때는 다음처럼 json.loads() 함수를 사용한다.</p>
+<pre><code class="language-python">&gt;&gt;&gt; json.loads(json_data)
+{'name': '홍길동', 'birth': '0525', 'age': 30}
+</code></pre>
+<p>한글 문자열이 아스키 형태의 문자열로 변경되는 것을 방지하는 방법도 있다.</p>
+<pre><code class="language-python">&gt;&gt;&gt; d = {&quot;name&quot;:&quot;홍길동&quot;, &quot;birth&quot;:&quot;0525&quot;, &quot;age&quot;: 30}
+&gt;&gt;&gt; json_data = json.dumps(d, ensure_ascii=False)
+&gt;&gt;&gt; json_data
+'{&quot;name&quot;: &quot;홍길동&quot;, &quot;birth&quot;: &quot;0525&quot;, &quot;age&quot;: 30}'
+&gt;&gt;&gt; json.loads(json_data)
+{'name': '홍길동', 'birth': '0525', 'age': 30}
+</code></pre>
+<p>이처럼 <code>ensure_ascii=False</code> 옵션을 사용하면 된다. 이 옵션은 데이터를 저장할 때 아스키 형태로 변환하지 않겠다는 뜻이다.</p>
+<p>출력되는 JSON 문자열을 보기 좋게 정렬하려면 다음처럼 indent 옵션을 추가하면 된다.</p>
+<pre><code class="language-python">&gt;&gt;&gt; d = {&quot;name&quot;:&quot;홍길동&quot;, &quot;birth&quot;:&quot;0525&quot;, &quot;age&quot;: 30}
+&gt;&gt;&gt; print(json.dumps(d, indent=2, ensure_ascii=False))
+{
+  &quot;name&quot;: &quot;홍길동&quot;,
+  &quot;birth&quot;: &quot;0525&quot;,
+  &quot;age&quot;: 30
+}
+</code></pre>
+<p>그리고 딕셔너리 외에 리스트나 튜플처럼 다른 자료형도 JSON 문자열로 바꿀 수 있다.</p>
+<pre><code class="language-python">&gt;&gt;&gt; json.dumps([1,2,3])
+'[1, 2, 3]'
+&gt;&gt;&gt; json.dumps((4,5,6))
+'[4, 5, 6]'
+</code></pre>
+<h2 id="urllib">urllib</h2>
+<p>urllib은 URL을 읽고 분석할 때 사용하는 모듈이다.</p>
+<p>브라우저로 위키독스의 특정 페이지를 읽으려면 다음과 같이 요청하면 된다.</p>
+<pre><code class="language-no-highlight">https://wikidocs.net/페이지_번호 (예: https://wikidocs.net/12)
+</code></pre>
+<p>그러면 오프라인으로도 읽을 수 있도록 페이지 번호를 입력받아 위키독스의 특정 페이지를 <code>wikidocs_페이지_번호.html</code> 파일로 저장하는 함수는 어떻게 만들어야 할까?</p>
+<p>URL을 호출하여 원하는 리소스를 얻으려면 urllib 모듈을 사용해야 한다.</p>
+<pre><code class="language-python"># urllib_test.py
+import urllib.request
+
+def get_wikidocs(page):
+    resource = 'https://wikidocs.net/{}'.format(page)
+    with urllib.request.urlopen(resource) as s:
+        with open('wikidocs_%s.html' % page, 'wb') as f:
+            f.write(s.read())
+</code></pre>
+<p>get_wikidocs(page)는 위키독스의 페이지 번호를 입력받아 해당 페이지의 리소스 내용을 파일로 저장하는 함수이다. 이 코드에서 보듯이 <code>urllib.request.urlopen(resource)</code>로 s 객체를 생성하고 <code>s.read()</code>로 리소스 내용 전체를 읽어 이를 저장할 수 있다. 예를 들어 <code>get_wikidocs(12)</code>라고 호출하면 <code>https://wikidocs.net/12</code> 웹 페이지를 <code>wikidocs_12.html</code>라는 파일로 저장한다.</p>
+<p><fieldset><legend>점프 투 파이썬</legend>
+<strong>SSL 오류가 발생하면</strong></p>
+<p>get_wikidocs 함수 실행시 다음과 같은 오류가 발생할 수 있다.</p>
+<pre><code class="language-plaintext">urllib.error.URLError: &lt;urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed
+</code></pre>
+<p>이 오류는 SSL 인증서 검증에 실패했음을 나타낸다. 파이썬이 서버의 SSL 인증서를 신뢰할 수 있는지 확인하는 과정에서, 로컬 시스템에 필요한 CA(인증 기관) 인증서가 없거나 찾을 수 없어 발생한 문제로 이는 특히 macOS에서 자주 발생하는 문제이다.</p>
+<p>만약 이와 같은 오류가 발생한다면 다음과 같은 코드를 추가하여 이 문제를 회피할수 있다.</p>
+<pre><code class="language-python">import urllib.request
+
+[[MARK]]# SSL 인증서 검증을 비활성화하는 Context 생성
+import ssl
+context = ssl._create_unverified_context()[[/MARK]]
+
+def get_wikidocs(page):
+    resource = f'https://wikidocs.net/{page}'
+    with urllib.request.urlopen(resource, [[MARK]]context=context[[/MARK]]) as s:  # 생성한 Context 전달
+        with open(f'wikidocs_{page}.html', 'wb') as f:
+            f.write(s.read())
+
+get_wikidocs(12)
+</code></pre>
+<p></fieldset></p>
+<h2 id="webbrowser">webbrowser</h2>
+<p>webbrowser는 파이썬 프로그램에서 시스템 브라우저를 호출할 때 사용하는 모듈이다.</p>
+<p>개발 중 궁금한 내용이 있어 파이썬 문서를 참고하려 한다. 이를 위해 https://python.org 사이트를 새로운 웹 브라우저 로 열려면 코드를 어떻게 작성해야 할까?</p>
+<p><img alt="" src="https://wikidocs.net/images/page/33/05_6_pic7.png" /></p>
+<p>파이썬으로 웹 페이지를 새 창으로 열려면 webbrowser 모듈의 open_new() 함수를 사용해야 한다.</p>
+<pre><code class="language-python"># webbrowser_test.py
+import webbrowser
+
+webbrowser.open_new('http://python.org')
+</code></pre>
+<p>이미 열린 브라우저로 원하는 사이트를 열고 싶다면 다음처럼 open_new() 대신 open()을 사용하면 된다.</p>
+<pre><code class="language-python">webbrowser.open('http://python.org')
+</code></pre>
+<blockquote>
+<p>파이썬 라이브러리에 대해서 보다 깊게 공부하고 싶다면 필자가 집필한 《<a href="https://wikidocs.net/book/5445">점프 투 파이썬 – 라이브러리 예제 편</a>》을 읽어 보기 바란다.</p>
+</blockquote>
+</div>
+
+<div class="muted text-right" style="font-size: 0.9em;margin:10px 0;">
+    
+    마지막 편집일시 : 2024년 3월 7일 1:26 오전
+    
+</div>
+
+<!-- google adsense -->
+<!-- PC -->
+
+<!-- Mobile -->
+
+    
+        <div style="margin:20px 0;">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9470517771012578"
+     crossorigin="anonymous"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9470517771012578"
+     data-ad-slot="3685498833"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+        </div>
+    
+
+
+<!-- google adsense -->
+
+<!--
+
+-->
+
+<div class="clearfix">
+    <a href="javascript:show_comments();" class="label label-info">댓글 41</a>
+    <a href="#myModal" data-toggle="modal" title="피드백을 남겨주세요" class="label label-info">피드백</a>
+</div>
+
+<div class="user_comments" style="display:none">
+
+    <div class="comments" id="page_all_comments">
+        
+
+
+
+
+<div style="margin:15px 0 10px 0; font-size:0.75em;">
+    <a href="javascript:get_all_page_comments(33)">댓글 31개 더 보기...</a>
+</div>
+
+
+
+
+    <div class="comment comment_border_top">
+        <a name="comment_5698"></a>
+        <span style="white-space:pre-wrap;">위 예제 스레드를 다루는 threading 모듈과 똑같이 테스트했는데도 메인 프로그램 종료 후, 생성한 sub thread들은 무한히 반복되고 있습니다.
+비단 이 예제뿐만 아니라 google에 있는 thread 예제들을 모두 실행했는데 daemon thread 가 종료가 안 되네요.
+뭐가 문제일까요? 
+google의 대부분의 기술 문서에도 daemon Thread는 main program 종료하면 종료가 된다고 나오는데...
+답답하네요.  제 설정이 문제가 있는 건지.
+참고로 이 강좌 그대로 따라 설치하면서 테스트를 하고 있습니다.
+문제의 원인 좀 알려주세요.
+
+</span>
+        <span style="font-size:12px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/5855">cybershadow</a>,
+            
+            2017년 12월 1일 3:17 오후
+            
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_5723"></a>
+        <span style="white-space:pre-wrap;">thread 설명은 봐도봐도 뭔 소리인지 모르겠네요. 자세하지 않고 불친절해요. 굉장히 중요한 것 같은데.
+그리고 메인 프로그램 종료되면 쓰레드도 같이 종료된다고 나와있는데 저 예제 코드 그대로 쳤는데도 계속 쓰레드가 반복되고 있어요. </span>
+        <span style="font-size:12px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/3062">Paran</a>,
+            
+            2017년 12월 26일 3:33 오후
+            
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_5725"></a>
+        <span style="white-space:pre-wrap;">@Paran님, @cybershadow님, 서브 쓰레드가 종료안된다면 t.daemon=True 이 부분 혹시 오타가 없는지 확인 부탁드립니다. 그래도 안된다면 테스트 해 주신 환경을 알려주시면 확인해 보겠습니다. @Paran님, 쓰레드 부분은 좀 더 자세한 설명으로 보충하도록 하겠습니다.. </span>
+        <span style="font-size:12px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/3">박응용</a>,
+            
+            2017년 12월 26일 4:25 오후
+            
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_5738"></a>
+        <span style="white-space:pre-wrap;">안녕하세요. 답변이 늦었습니다.
+
+t.daemon=True 에서 오타가 있으면 오류가 발생하는데 오류없이 정상적으로 실행되었고
+print(t.daemon)갑을 확인해도 True로 나오네요.
+
+참고로 전체 복사해서 붙여넣기 실행해도 동일합니다.
+
+제 테스트 환경은 아래와 같습니다.
+- Windows 7 64bit
+- python 3.6.3</span>
+        <span style="font-size:12px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/5855">cybershadow</a>,
+            
+            2018년 1월 4일 1:02 오후
+            
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_6245"></a>
+        <span style="white-space:pre-wrap;">glob 연습문제를 그대로 해도 명령 프롬프트에서 문제가 발생하네요
+파이썬 셸에서는 멀쩡히 작동하는데 왜 프롬프트에서만 문제일까요?
+&#x27;module&#x27; object is not callable</span>
+        <span style="font-size:12px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/7019">종석</a>,
+            
+            2018년 9월 25일 3:59 오후
+            
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_7202"></a>
+        <span style="white-space:pre-wrap;">몇년 전에 파이썬을 공부하다가 지금 다시 필요해서 이 사이트에서 잘 배우고 있습니다 감사합니다
+
+tempfile.mktemp() 에 대해 알아보다가 
+
+<a href="https://docs.python.org/3/library/tempfile.html" rel="nofollow">https://docs.python.org/3/library/tempfile.html</a> 여기 보니까
+보안상의 이유로 python 2.3 이후로 deprecated function 목록에 들어가 있고
+대신 tempfile.mkstemp() 를 권하고 있기에 여기 글이 업데이트 되면 많은 분들에게 도움이 될것 같아 알려드립니다
+
+감사합니다.</span>
+        <span style="font-size:12px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/9466">yane</a>,
+            
+            2020년 2월 6일 7:37 오전
+            
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_7206"></a>
+        <span style="white-space:pre-wrap;">@yane님, 알려주셔서 감사합니다. 알려주신 내용은 본문에 반영되었습니다.</span>
+        <span style="font-size:12px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/3">박응용</a>,
+            
+            2020년 2월 7일 12:08 오전
+            
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_14042"></a>
+        <span style="white-space:pre-wrap;">functools.reduce에서 &#x27;두개의 인수를&#x27; 차례대로 누적적용한다고 설명해야할것 같습니다. 세개도 되고 네개도 되나했는데 아닌가보더라구요;;</span>
+        <span style="font-size:12px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/15951">김정규</a>,
+            
+            2023년 2월 20일 2:33 오후
+            
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_17775"></a>
+        <span style="white-space:pre-wrap;">urllib.request.urlopen() 메소드를 사용해서 https 접근시 SSL 에러가 발생합니다.(로컬 개발환경)
+다른 스크립트 언어와 마찬가지로 파이썬에서도 SSL 비활성화 하는 코드가 필요합니다. 참조 코드 첨부합니다.
+
+    import ssl
+    
+    # SSL 인증서 검증 비활성화
+    context = ssl._create_unverified_context()
+    urllib.request.urlopen(resource, context=context) </span>
+        <span style="font-size:12px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/17722">핑크곰</a>,
+            
+            2024년 2월 29일 4:41 오후
+            
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_17776"></a>
+        <span style="white-space:pre-wrap;">@핑크곰님 해당 문제를 알려주셔서 감사합니다. 알려주신 내용을 본문에 반영하였습니다. </span>
+        <span style="font-size:12px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/3">박응용</a>,
+            
+            2024년 2월 29일 5:35 오후
+            
+            
+            
+        </span>
+    </div>
+
+
+
+
+
+
+    </div>
+
+    
+    <a href="/loginForm" class="text-info" style="font-size:12px">※ 댓글 작성은 로그인이 필요합니다.</a>
+    <a href="#myModal" data-toggle="modal" style="font-size:12px">(또는 피드백을 이용해 주세요.)</a>
+    
+</div>
+
+<div class="page-prev-next">
+    
+<div class="clearfix">
+    <div class="pull-left">
+        <ul>
+            
+                <li><strong>이전글</strong> : <a href="javascript:page(32)">05-5 내장 함수</a></li>
+            
+            
+                <li><strong>다음글</strong> : <a href="javascript:page(180538)">05-7 외부 라이브러리</a></li>
+            
+        </ul>
+    </div>
+</div>
+
+
+</div>
+
+
+
+
+<a href="#" class="btn btn-primary back-to-top mobile-toc">
+    <span class="glyphicon glyphicon-list"></span>
+    목차보기
+</a>
+
+
+<!-- 책갈피 모달 -->
+<div class="modal fade" id="bookmarkModal" tabindex="-1" role="dialog" aria-labelledby="bookmarkModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="bookmarkModalLabel">책갈피</h4>
+            </div>
+            <div class="modal-body bookmark-body">
+                <!-- 여기에 동적 데이터가 로드됩니다 -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">추가</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+var is_mobile = "True";
+$(document).ready(function () {
+    if (is_mobile == "True") {
+        if($(window).width() >= 768) {
+            // show toc
+            localStorage.toc = "show";
+            $('#toc_on').prop('checked', true);
+            $(".toc-checker").removeClass("hide");
+            $(".toc-checker").show();
+
+        }else {
+            // hide toc
+            localStorage.toc = "hide";
+            $('#toc_off').prop('checked', true);
+            $(".toc-checker").hide();
+        }
+        $(".mobile-toc").click(function() {
+            $('#toc_on').prop('checked', true);
+            $(".toc-checker").removeClass("hide");
+            $(".toc-checker").show();
+        });
+    }
+
+    $('.bookmark_btn').click(function(){
+        var pathname = window.location.pathname;
+        $.ajax({
+            url: "/bookmark/",
+            method: "post",
+            data: {pathname: pathname},
+            success: function(data){
+                $('#bookmarkModal .modal-body').html(data);
+                $('#bookmarkModal').modal("show");
+            }
+        });
+    });
+
+    $('#bookmarkModal .btn-primary').click(function(){
+        var pathname = window.location.pathname;
+        $.ajax({
+            url: "/bookmark/add/",
+            method: "post",
+            data: {pathname: pathname},
+            success: function(data){
+                $('#bookmarkModal .modal-body').html(data);
+            }
+        });
+    });
+
+    $('#bookmarkModal .item-delete').click(function(){
+        
+        $.ajax({
+            url: "/bookmark/delete/",
+            method: "post",
+            data: {pathname: pathname},
+            success: function(data){
+                $('#bookmarkModal .modal-body').html(data);
+            }
+        });
+    });
+});
+function deleteBookmark(bookmarkId) {
+    if (confirm('정말 삭제하시겠습니까?')) {
+        $.ajax({
+            url: '/bookmark/delete/' + bookmarkId + '/',
+            type: 'POST',
+            data: {
+                'csrfmiddlewaretoken': 'RQ5zlkNboOtP44k9LDjRerWix2jDTsxI4Ij8qEZyNBypCHYL2YSivPuVgay23jG4'
+            },
+            success: function(response) {
+                $('#bookmarkModal .modal-body').html(response);
+            },
+            error: function(xhr, status, error) {
+                // 오류 처리
+                alert('삭제 실패: ' + error);
+            }
+        });
+    }
+}
+</script>
+    
+
+    </div>
+
+</div>
+
+<div style="display:none" class="prev_next_indicator">
+    
+    <a class="prev_icon" href="javascript:page(32)" role="button">
+        <span class="glyphicon glyphicon-chevron-left" style="font-size:2em;"></span>
+    </a>
+
+
+    <a class="next_icon" href="javascript:page(180538)" role="button">
+        <span class="glyphicon glyphicon-chevron-right" style="font-size:2em;"></span>
+    </a>
+
+
+</div>
+
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 id="myModalLabel" class="modal-title">이 페이지에 대한 피드백을 남겨주세요</h3>
+            </div>
+            <div class="modal-body">
+                <form class="form" role="form">
+                    <input type="hidden" name="page_id" id="page_id" value="33" />
+                    <div class="form-group">
+                        <label class="control-label" for="email">답장받을 이메일 주소</label>
+                        <div class="">
+                            <input class="form-control" type="text" id="email" placeholder="Email" >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="feedback">하고 싶은 말</label>
+                        <div class="controls">
+                            <textarea class="form-control" id="feedback" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <p style="font-size:12px;">※ 피드백은 저자에게 e-메일로 전달됩니다.</p>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default" data-dismiss="modal">Close</button>
+                <button class="btn btn-primary" id="feedback_btn">전송하기</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="reportModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="reportModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 id="reportModalLabel" class="modal-title">댓글을 신고합니다.</h3>
+            </div>
+            <div class="modal-body">
+                <form class="form" role="form">
+                    <input type="hidden" name="comment_id" id="comment_id" />
+                    해당 댓글을 신고하시겠습니까? 댓글 신고는 다음과 같은 경우에 사용해주세요:
+                    <ol>
+                        <li>스팸 또는 광고성 내용이 포함된 경우</li>
+                        <li>욕설, 비방, 개인정보 유출 등 부적절한 내용이 포함된 경우</li>
+                        <li>저작권을 침해하는 내용이 포함된 경우</li>
+                    </ol>
+                    <div class="form-group">
+                        <label class="control-label" for="report">신고 사유를 입력해 주세요.</label>
+                        <div class="controls">
+                            <textarea class="form-control" id="report" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <p style="font-size:12px;">※ 신고하신 내용은 관리자에게 전달되며, 확인 후 적절한 조치가 이루어집니다. 신고는 익명으로 처리되며, 신고자의 정보는 공개되지 않습니다.</p>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default" data-dismiss="modal">Close</button>
+                <button class="btn btn-primary" id="report_btn">전송하기</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+
+
+<script>
+$(document).ready(function () {
+    $('pre code').each(function(i, e) {
+        hljs.highlightElement(e);
+        $(e).html($(e).html()
+            .replace(/\[\[MARK\]\]/g,'<mark class="add">')
+            .replace(/\[\[\/MARK\]\]/g, '</mark>')
+            .replace(/\[\[SMARK\]\]/g,'<mark class="del"><strike>')
+            .replace(/\[\[\/SMARK\]\]/g, '</strike></mark>')
+            .replace(/\[\[\/.*SMARK.*\]\]/g, '</strike></mark>')
+            .replace(/\[\[.*SMARK.*\]\]/g,'<mark class="del"><strike>')
+            .replace(/\[\[\/.*MARK.*\]\]/g, '</mark>')
+            .replace(/\[\[.*MARK.*\]\]/g,'<mark class="add">')
+        );
+    });
+
+    $("pre code").addClass("md-csc-wrap");
+    $(".hljs").prepend("<button class='md-csc-button btn btn-xs btn-default'><span class='copymsg'>Copy</span></button>");
+
+    $(".md-csc-button").click(function(){
+        let text = $(this).parent().text();
+        text = text.substring(4); // "Copy 문자열 이후부터.."
+        const textArea = document.createElement('textarea');
+        textArea.textContent = text;
+        document.body.append(textArea);
+        textArea.select();
+        document.execCommand("copy");
+        textArea.remove();
+
+        $(this).find(".copymsg").html("Copied!");
+        setTimeout(() => {
+            $(this).find(".copymsg").html("Copy");
+        }, 2000);
+    });
+});
+</script>
+
+</body>
+</html>
