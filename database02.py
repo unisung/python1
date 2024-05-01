@@ -1,6 +1,6 @@
 import sqlite3
 
-con = sqlite3.connect('addr2.db') # Database 생성 및 연결
+con = sqlite3.connect('c:\\temp\\addr2.db') # Database 생성 및 연결
 cursor = con.cursor() #Database 연결 객체 생성
 #SQL명령문 실행
 cursor.execute("drop table if exists myAddr")
@@ -16,11 +16,19 @@ for i in range(3):
     addr = input('주소:')
     info = input('메모:')
     sql=f"insert into myAddr values (\'{name}\',\'{phone}\',\'{addr}\',\'{info}\')"
+    print(sql)
     cursor.execute(sql)
 
 #DB반영처리
 con.commit()
+print("저장완료")
+
+#결과 조회
+cursor.execute('select * from myAddr')
+table = cursor.fetchall()
+for record in table:
+    print('이름:%s, 전화:%s, 주소:%s, 메모:%s'% record)
 
 cursor.close()
 con.close()
-print("저장완료")
+
