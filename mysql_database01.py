@@ -1,6 +1,8 @@
 import pymysql
 
-con = pymysql.connect(host='127.0.0.1',user='root', password='1234',db='addr', charset='utf8') # Database 생성 및 연결
+con = pymysql.connect(host='43.203.231.53',user='root',
+                      password='1234',
+                      db='yhs', charset='utf8') # Database 생성 및 연결
 cursor = con.cursor() #Database 연결 객체 생성
 #SQL명령문 실행
 cursor.execute("drop table if exists tblAddr")
