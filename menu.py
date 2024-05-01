@@ -13,6 +13,7 @@ exit = wx.MenuItem(id = wx.ID_ANY, text="종료")
 file.Append(exit)
 frame.SetMenuBar(menubar)
 
+
 def onAbout(event):
     wx.MessageBox("메뉴를 사용하는 프로그램입니다.", "알림", wx.OK)
 frame.Bind(wx.EVT_MENU, onAbout, about)
