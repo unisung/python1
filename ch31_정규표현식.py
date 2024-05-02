@@ -207,8 +207,36 @@ print(m.group('name'))
 p = re.compile(r'(?P<word>\b\w+)\s+(?P=word)')
 print(p.search('Paris in the the spring').group())
 
+#전방탐색 (?=패턴) 긍정형 , (?!패턴) 부정형
+p=re.compile('.+:') # http: https:
+m=p.search('http://google.com')
+print(m.group())
 
+p= re.compile('.+(?=:)')
+m=p.search('http://google.com')
+print(m.group())
 
+p= re.compile('.*[.](?!bat$).*$')
 
+#sub() - 문자열 변환
+p=re.compile('(blue|white|red)')
+print(p.sub('colour','blue socks and red socks'))
+print(p.sub('colour','blue socks and red socks',count=1))
 
+p = re.compile(r"(?P<name>\w+)\s+(?P<phone>(\d+)[-]\d+[-]\d+)")
+print(p.sub("\\g<2> \\g<1>", "park 010-1234-1234"))
 
+#sub 메소드의 매개변수로 함수 넣기
+def hexrepl(match):
+    value=int(match.group())
+    return hex(value)
+
+p = re.compile(r'\d+')
+print(p.sub(hexrepl, 'Call 65490 for printing, 49152 for user code.'))
+
+#greedy vs non-greedy
+s='<html><head><title>Title</title>'
+print(len(s))
+print(re.match('<.*>',s).span())
+print(re.match('<.*>',s).group())
+print(re.match('<.*?>',s).group())
