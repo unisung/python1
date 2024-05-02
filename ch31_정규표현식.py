@@ -111,7 +111,7 @@ print(p.match('python'.capitalize()))
 
 # MULILINE, M
 import re
-p=re.compile("^python\s\w+", re.MULTILINE) # ^시작
+p=re.compile("^python\\s\\w+", re.MULTILINE) # ^시작
 
 data="""python one
 life is too short
@@ -135,7 +135,79 @@ charref = re.compile(r"""
  ;                   # Trailing semicolon
 """, re.VERBOSE)
 
-#
+# 문자열 소비가 없는 메타 문자
+#  | ^ $ \A \Z \b \B
+# |
+p = re.compile('Crow|Servo')
+m=p.match('CrowHello')
+print(m.group())
+
+# ^ - starts
+print(re.search('^Life','Life is too short'))
+print(re.search('^Life', 'My Life'))
+
+#$ - ends
+print(re.search('short$', 'Life is too short'))
+print(re.search('short$', 'Life is too short, you need python'))
+
+# \A -줄상관없이 전체 문자열의 처음과 매칭, \Z - 줄상관없이 전체 문자열 마지막
+
+# \b - word boundary
+p = re.compile(r'\bclass\b') # \b단어\b 단어 앞뒤로 공백
+print(p.search('no class at all'))
+print(p.search('the declassified algorithm'))
+print(p.search('one subclass algorithm'))
+
+#\B <= \b와 반대
+p = re.compile(r'\Bclass\B')
+print(p.search('no class at all'))
+print(p.search('the declassified algorithm'))
+print(p.search('one subclass algorithm'))
+
+# 그루핑 (ABC)+
+p = re.compile('(ABC)+')
+m = p.search('ABCABCABC OK?')
+print(m)
+print(m.group())
+
+p=re.compile(r"\w+\s+\d+[-]\d+[-]\d+")
+m = p.search('park 010-1234-1234')
+print(m)
+print(m.group(0))
+# group(인덱스) - group(0) 매칭된 전체문자열, group(1)-첫번재,  group(2)-두번째,,,
+
+p = re.compile(r"(\w+)\s+(\d+[-]\d+[-]\d+)")
+m = p.search('park 010-1234-1234')
+print(m.group(0))
+print(m.group(1))
+print(m.group(2))
+
+p = re.compile(r"(\w+)\s+((\d+)[-]\d+[-]\d+)")
+m = p.search('park 010-1234-1234')
+print(m.group(0))
+print(m.group(1))
+print(m.group(2))
+print(m.group(3))
+
+# 그루핑 문자열 재참조
+p = re.compile(r'(\b\w+)\s+\1') # \1 정규식 그룹 중 첫번째 그룹
+print(p.search('Paris in the the spring').group())
+# (그룹) + " " + 그룹
+
+# 그루핑 문자열에 이름 붙이기
+p = re.compile(r"(?P<name>\w+)\s+((\d+)[-]\d+[-]\d+)")
+m = p.search("park 010-1234-1234")
+print(m.group())
+print(m.group(0))
+print(m.group(1))
+print(m.group(2))
+print(m.group('name'))
+
+#그룹명 재참조
+p = re.compile(r'(?P<word>\b\w+)\s+(?P=word)')
+print(p.search('Paris in the the spring').group())
+
+
 
 
 
